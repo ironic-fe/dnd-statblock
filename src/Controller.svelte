@@ -3,6 +3,7 @@
   import PresetForm from "./components/PresetForm.svelte";
   import Statblock from "./components/Statblock.svelte";
   import TypeForm from "./components/TypeForm.svelte";
+  import HpAcForm from "./components/HpAcForm.svelte";
 
   const statblock = getContext("statblock");
 </script>
@@ -60,103 +61,7 @@
         <hr />
         <TypeForm />
         <hr />
-        <table id="armor-hitdice-form">
-          <tr>
-            <td></td>
-            <td>
-              <div id="hitdice-input-prompt">
-                <label for="hitdice-input">
-                  Hit Dice: <br />
-                  <input
-                    type="number"
-                    id="hitdice-input"
-                    min="1"
-                    max="99"
-                    value="5"
-                  />
-                </label>
-              </div>
-              <div id="hp-text-input-prompt">
-                <label for="hp-text-input">
-                  Hit Points:
-                  <br />
-                  <input id="hp-text-input" value="4 (1d8)" />
-                </label>
-              </div>
-              <div id="custom-hp-box-prompt" class="box-note">
-                <label for="custom-hp-input">
-                  (Custom HP:
-                  <input
-                    id="custom-hp-input"
-                    type="checkbox"
-                    onchange="FormFunctions.ShowHideCustomHP()"
-                  />
-                  )
-                </label>
-              </div>
-            </td>
-            <td>
-              <label for="armor-input">
-                Armor Type: <br />
-                <select
-                  id="armor-input"
-                  onchange="FormFunctions.ShowHideOtherArmor()"
-                >
-                  <option value="none" selected>None</option>
-                  <option value="natural armor">Natural Armor</option>
-                  <option value="mage armor">Mage Armor</option>
-                  <option value="padded armor">Padded</option>
-                  <option value="leather armor">Leather</option>
-                  <option value="studded leather">Studded Leather</option>
-                  <option value="hide armor">Hide</option>
-                  <option value="chain shirt">Chain Shirt</option>
-                  <option value="scale mail">Scale Mail</option>
-                  <option value="breastplate">Breastplate</option>
-                  <option value="half plate">Half Plate</option>
-                  <option value="ring mail">Ring Mail</option>
-                  <option value="chain mail">Chain Mail</option>
-                  <option value="splint">Splint</option>
-                  <option value="plate">Plate</option>
-                  <option value="other">Other</option>
-                </select>
-              </label>
-              <div id="shield-box-note" class="box-note">
-                <label for="shield-input">
-                  (Shield: <input id="shield-input" type="checkbox" />
-                  )
-                </label>
-              </div>
-            </td>
-            <td colspan="2">
-              <div id="natarmor-prompt">
-                <label for="natarmor-input">
-                  Natural Armor Bonus:
-                  <br />
-                  <input
-                    type="number"
-                    id="natarmor-input"
-                    min="1"
-                    max="99"
-                    value="3"
-                  />
-                </label>
-              </div>
-              <div id="otherarmor-prompt">
-                <label for="otherarmor-input">
-                  Description: <input
-                    id="otherarmor-input"
-                    type="text"
-                    value="10 (armor)"
-                  />
-                </label>
-                <br />
-                <div id="otherarmor-box-note" class="box-note">
-                  <i>Use _ to italicize</i>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
+        <HpAcForm />
         <br />
         <table id="monster-speed-form">
           <tr>

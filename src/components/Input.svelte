@@ -14,7 +14,9 @@
 </script>
 
 <label {hidden}>
+  <slot name="beforeLabel" />
   <span>{label}:</span>
+  <slot name="beforeInput" />
   {#if type == "select"}
     <select
       {name}
@@ -37,6 +39,7 @@
       {max}
     />
   {/if}
+  <slot name="afterInput" />
 </label>
 
 <style>

@@ -95,3 +95,22 @@ export const types = [
   { value: "undead", name: "Undead" },
   { value: "*", name: "Other" },
 ];
+
+export const armorTypes = [
+  { value: "none", name: "None" },
+  { value: "natural armor", name: "Natural Armor" },
+  { value: "mage armor", name: "Mage Armor" },
+  { value: "padded armor", name: "Padded" },
+  { value: "leather armor", name: "Leather" },
+  { value: "studded leather", name: "Studded Leather" },
+  { value: "hide armor", name: "Hide" },
+  { value: "chain shirt", name: "Chain Shirt" },
+  { value: "scale mail", name: "Scale Mail" },
+  { value: "breastplate", name: "Breastplate" },
+  { value: "half plate", name: "Half Plate" },
+  { value: "ring mail", name: "Ring Mail" },
+  { value: "chain mail", name: "Chain Mail" },
+  { value: "splint", name: "Splint" },
+  { value: "plate", name: "Plate" },
+  { value: "other", name: "Other" },
+];
