@@ -3,14 +3,15 @@
   import Statblock from "./components/Statblock.svelte";
   import { getContext } from "svelte";
 
-  const statblock = getContext('statblock');
+  const statblock = getContext("statblock");
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
   <div class="container" style="text-align: center;">
     <div class="content">
       <h1>D&D 5e Statblock Generator</h1>
-      <br /><br />
+      <br />
+      <br />
       <PresetForm />
       <br />
 
@@ -30,10 +31,10 @@
           </label>
           <label for="2col-input" style="margin-left: .5rem;">
             <input
-                id="2col-input"
-                type="radio"
-                name="columns-input"
-                value="2col"
+              id="2col-input"
+              type="radio"
+              name="columns-input"
+              value="2col"
             />
             Two Columns
           </label>
@@ -41,31 +42,36 @@
         <button
           id="left-separator-button"
           type="button"
-          onclick="UpdateBlockFromVariables(1)">&lt;&lt;</button
+          onclick="UpdateBlockFromVariables(1)"
         >
-        <button type="button" onclick="UpdateBlockFromVariables(0)"
-          >Update Statblock</button
-        >
+          &lt;&lt;
+        </button>
+        <button type="button" onclick="UpdateBlockFromVariables(0)">
+          Update Statblock
+        </button>
         <button
           id="right-separator-button"
           type="button"
-          onclick="UpdateBlockFromVariables(-1)">>></button
+          onclick="UpdateBlockFromVariables(-1)"
         >
+          >>
+        </button>
         <hr />
         <table id="type-form">
           <tr>
             <td>
-              <label for="name-input"
-                >Name: <br /><input
+              <label for="name-input">
+                Name: <br />
+                <input
                   type="text"
                   value={$statblock.name}
-                  on:change={(e) => $statblock.name = e.target.value}
-                /></label
-              >
+                  on:change={(e) => ($statblock.name = e.target.value)}
+                />
+              </label>
             </td>
             <td>
-              <label for="size-input"
-                >Size: <br />
+              <label for="size-input">
+                Size: <br />
                 <select id="size-input">
                   <option value="tiny">Tiny</option>
                   <option value="small">Small</option>
@@ -77,8 +83,8 @@
               </label>
             </td>
             <td>
-              <label for="type-input"
-                >Type: <br />
+              <label for="type-input">
+                Type: <br />
                 <select
                   id="type-input"
                   onchange="FormFunctions.ShowHideTypeOther()"
@@ -109,20 +115,16 @@
               </div>
             </td>
             <td>
-              <label for="tag-input"
-                >Tag: <br />
-                <input id="tag-input" type="text" /></label
-              >
+              <label for="tag-input">
+                Tag: <br />
+                <input id="tag-input" type="text" />
+              </label>
             </td>
             <td>
-              <label for="alignment-input"
-                >Alignment: <br />
-                <input
-                  id="alignment-input"
-                  type="text"
-                  value="any alignment"
-                /></label
-              >
+              <label for="alignment-input">
+                Alignment: <br />
+                <input id="alignment-input" type="text" value="any alignment" />
+              </label>
             </td>
           </tr>
         </table>
@@ -132,38 +134,39 @@
             <td></td>
             <td>
               <div id="hitdice-input-prompt">
-                <label for="hitdice-input"
-                  >Hit Dice: <br /><input
+                <label for="hitdice-input">
+                  Hit Dice: <br />
+                  <input
                     type="number"
                     id="hitdice-input"
                     min="1"
                     max="99"
                     value="5"
-                  /></label
-                >
+                  />
+                </label>
               </div>
               <div id="hp-text-input-prompt">
-                <label for="hp-text-input"
-                  >Hit Points:<br /><input
-                    id="hp-text-input"
-                    value="4 (1d8)"
-                  /></label
-                >
+                <label for="hp-text-input">
+                  Hit Points:
+                  <br />
+                  <input id="hp-text-input" value="4 (1d8)" />
+                </label>
               </div>
               <div id="custom-hp-box-prompt" class="box-note">
-                <label for="custom-hp-input"
-                  >(Custom HP:
+                <label for="custom-hp-input">
+                  (Custom HP:
                   <input
                     id="custom-hp-input"
                     type="checkbox"
                     onchange="FormFunctions.ShowHideCustomHP()"
-                  />)</label
-                >
+                  />
+                  )
+                </label>
               </div>
             </td>
             <td>
-              <label for="armor-input"
-                >Armor Type: <br />
+              <label for="armor-input">
+                Armor Type: <br />
                 <select
                   id="armor-input"
                   onchange="FormFunctions.ShowHideOtherArmor()"
@@ -184,34 +187,38 @@
                   <option value="splint">Splint</option>
                   <option value="plate">Plate</option>
                   <option value="other">Other</option>
-                </select></label
-              >
+                </select>
+              </label>
               <div id="shield-box-note" class="box-note">
-                <label for="shield-input"
-                  >(Shield: <input id="shield-input" type="checkbox" />)</label
-                >
+                <label for="shield-input">
+                  (Shield: <input id="shield-input" type="checkbox" />
+                  )
+                </label>
               </div>
             </td>
             <td colspan="2">
               <div id="natarmor-prompt">
-                <label for="natarmor-input"
-                  >Natural Armor Bonus:<br /><input
+                <label for="natarmor-input">
+                  Natural Armor Bonus:
+                  <br />
+                  <input
                     type="number"
                     id="natarmor-input"
                     min="1"
                     max="99"
                     value="3"
-                  /></label
-                >
+                  />
+                </label>
               </div>
               <div id="otherarmor-prompt">
-                <label for="otherarmor-input"
-                  >Description: <input
+                <label for="otherarmor-input">
+                  Description: <input
                     id="otherarmor-input"
                     type="text"
                     value="10 (armor)"
-                  /></label
-                ><br />
+                  />
+                </label>
+                <br />
                 <div id="otherarmor-box-note" class="box-note">
                   <i>Use _ to italicize</i>
                 </div>
@@ -222,21 +229,26 @@
         <br />
         <table id="monster-speed-form">
           <tr>
-            <td class="normal-speed-col"
-              ><label for="speed-input"
-                >Speed:<br /><input
+            <td class="normal-speed-col">
+              <label for="speed-input">
+                Speed:
+                <br />
+                <input
                   type="number"
                   id="speed-input"
                   min="0"
                   max="995"
                   step="5"
                   value="30"
-                /> ft.</label
-              ></td
-            >
-            <td class="normal-speed-col"
-              ><label for="burrow-speed-input"
-                >Burrow Speed:<br /><input
+                />
+                ft.
+              </label>
+            </td>
+            <td class="normal-speed-col">
+              <label for="burrow-speed-input">
+                Burrow Speed:
+                <br />
+                <input
                   type="number"
                   id="burrow-speed-input"
                   min="0"
@@ -244,24 +256,29 @@
                   step="5"
                   value="0"
                 />
-                ft.</label
-              ></td
-            >
-            <td class="normal-speed-col"
-              ><label for="climb-speed-input"
-                >Climb Speed:<br /><input
+                ft.
+              </label>
+            </td>
+            <td class="normal-speed-col">
+              <label for="climb-speed-input">
+                Climb Speed:
+                <br />
+                <input
                   type="number"
                   id="climb-speed-input"
                   min="0"
                   max="995"
                   step="5"
                   value="0"
-                /> ft.</label
-              ></td
-            >
+                />
+                ft.
+              </label>
+            </td>
             <td class="normal-speed-col">
-              <label for="fly-speed-input"
-                >Fly Speed:<br /><input
+              <label for="fly-speed-input">
+                Fly Speed:
+                <br />
+                <input
                   type="number"
                   id="fly-speed-input"
                   min="0"
@@ -270,45 +287,51 @@
                   value="0"
                   onchange="FormFunctions.ShowHideHoverBox()"
                 />
-                ft.</label
-              >
+                ft.
+              </label>
               <div id="hover-box-note" class="box-note">
-                <label for="hover-input"
-                  >(Hover: <input type="checkbox" id="hover-input" />)</label
-                >
+                <label for="hover-input">
+                  (Hover: <input type="checkbox" id="hover-input" />
+                  )
+                </label>
               </div>
             </td>
-            <td class="normal-speed-col"
-              ><label for="swim-speed-input"
-                >Swim Speed:<br /><input
+            <td class="normal-speed-col">
+              <label for="swim-speed-input">
+                Swim Speed:
+                <br />
+                <input
                   type="number"
                   id="swim-speed-input"
                   min="0"
                   max="995"
                   step="5"
                   value="0"
-                /> ft.</label
-              ></td
-            >
+                />
+                ft.
+              </label>
+            </td>
             <td colspan="5" class="custom-speed-col">
-              <label for="custom-speed-prompt" style="width: 100%;"
-                >Speed: <input
+              <label for="custom-speed-prompt" style="width: 100%;">
+                Speed: <input
                   id="custom-speed-prompt"
                   type="text"
                   value="30 ft."
-                /></label
-              ><br />
+                />
+              </label>
+              <br />
             </td>
             <td>
               <br />
               <div class="box-note">
-                <label for="custom-speed-input"
-                  >(Custom Speed: <input
+                <label for="custom-speed-input">
+                  (Custom Speed: <input
                     id="custom-speed-input"
                     type="checkbox"
                     onchange="FormFunctions.ShowHideCustomSpeed()"
-                  /> )</label
-                >
+                  />
+                  )
+                </label>
               </div>
             </td>
           </tr>
@@ -316,9 +339,10 @@
         <hr />
         <table id="monster-stats-form">
           <tr>
-            <td
-              ><label for="str-input"
-                >STR: <br /><input
+            <td>
+              <label for="str-input">
+                STR: <br />
+                <input
                   type="number"
                   id="str-input"
                   min="1"
@@ -326,12 +350,15 @@
                   value="10"
                   onchange="FormFunctions.ChangeBonus('str')"
                 />
-                (<span id="strbonus"></span>)</label
-              ></td
-            >
-            <td
-              ><label for="dex-input"
-                >DEX: <br /><input
+                (
+                <span id="strbonus"></span>
+                )
+              </label>
+            </td>
+            <td>
+              <label for="dex-input">
+                DEX: <br />
+                <input
                   type="number"
                   id="dex-input"
                   min="1"
@@ -339,12 +366,15 @@
                   value="10"
                   onchange="FormFunctions.ChangeBonus('dex')"
                 />
-                (<span id="dexbonus"></span>)</label
-              ></td
-            >
-            <td
-              ><label for="con-input"
-                >CON: <br /><input
+                (
+                <span id="dexbonus"></span>
+                )
+              </label>
+            </td>
+            <td>
+              <label for="con-input">
+                CON: <br />
+                <input
                   type="number"
                   id="con-input"
                   min="1"
@@ -352,12 +382,15 @@
                   value="10"
                   onchange="FormFunctions.ChangeBonus('con')"
                 />
-                (<span id="conbonus"></span>)</label
-              ></td
-            >
-            <td
-              ><label for="int-input"
-                >INT: <br /><input
+                (
+                <span id="conbonus"></span>
+                )
+              </label>
+            </td>
+            <td>
+              <label for="int-input">
+                INT: <br />
+                <input
                   type="number"
                   id="int-input"
                   min="1"
@@ -365,12 +398,15 @@
                   value="10"
                   onchange="FormFunctions.ChangeBonus('int')"
                 />
-                (<span id="intbonus"></span>)</label
-              ></td
-            >
-            <td
-              ><label for="wis-input"
-                >WIS: <br /><input
+                (
+                <span id="intbonus"></span>
+                )
+              </label>
+            </td>
+            <td>
+              <label for="wis-input">
+                WIS: <br />
+                <input
                   type="number"
                   id="wis-input"
                   min="1"
@@ -378,12 +414,15 @@
                   value="10"
                   onchange="FormFunctions.ChangeBonus('wis')"
                 />
-                (<span id="wisbonus"></span>)</label
-              ></td
-            >
-            <td
-              ><label for="cha-input"
-                >CHA: <br /><input
+                (
+                <span id="wisbonus"></span>
+                )
+              </label>
+            </td>
+            <td>
+              <label for="cha-input">
+                CHA: <br />
+                <input
                   type="number"
                   id="cha-input"
                   min="1"
@@ -391,16 +430,19 @@
                   value="10"
                   onchange="FormFunctions.ChangeBonus('cha')"
                 />
-                (<span id="chabonus"></span>)</label
-              ></td
-            >
+                (
+                <span id="chabonus"></span>
+                )
+              </label>
+            </td>
           </tr>
         </table>
         <hr />
         <table id="properties-lists-form">
           <tr>
             <td id="sthrows-form">
-              <label for="sthrows-input">Saving Throws:</label><br />
+              <label for="sthrows-input">Saving Throws:</label>
+              <br />
               <select id="sthrows-input">
                 <option value="str">Strength</option>
                 <option value="dex">Dexterity</option>
@@ -409,15 +451,16 @@
                 <option value="wis">Wisdom</option>
                 <option value="cha">Charisma</option>
               </select>
-              <button type="button" onclick="InputFunctions.AddSthrowInput()"
-                >Proficient</button
-              >
+              <button type="button" onclick="InputFunctions.AddSthrowInput()">
+                Proficient
+              </button>
               <div id="sthrows-input-section">
                 <ul id="sthrows-input-list" class="statblock-list"></ul>
               </div>
             </td>
             <td id="skills-form">
-              <label for="skills-input">Skills:</label><br />
+              <label for="skills-input">Skills:</label>
+              <br />
               <select id="skills-input">
                 <option value="acrobatics">Acrobatics</option>
                 <option value="animal Handling">Animal Handling</option>
@@ -438,19 +481,22 @@
                 <option value="stealth">Stealth</option>
                 <option value="survival">Survival</option>
               </select>
-              <button type="button" onclick="InputFunctions.AddSkillInput()"
-                >Proficient</button
-              >
+              <button type="button" onclick="InputFunctions.AddSkillInput()">
+                Proficient
+              </button>
               <button
                 type="button"
-                onclick="InputFunctions.AddSkillInput(' (ex)')">Expert</button
+                onclick="InputFunctions.AddSkillInput(' (ex)')"
               >
+                Expert
+              </button>
               <div id="skills-input-section">
                 <ul id="skills-input-list" class="statblock-list"></ul>
               </div>
             </td>
             <td id="conditions-form">
-              <label for="conditions-input">Condition Immunities: </label><br />
+              <label for="conditions-input">Condition Immunities:</label>
+              <br />
               <select id="conditions-input">
                 <option value="blinded">Blinded</option>
                 <option value="charmed">Charmed</option>
@@ -468,9 +514,12 @@
                 <option value="stunned">Stunned</option>
                 <option value="unconscious">Unconscious</option>
               </select>
-              <button type="button" onclick="InputFunctions.AddConditionInput()"
-                >Immune</button
+              <button
+                type="button"
+                onclick="InputFunctions.AddConditionInput()"
               >
+                Immune
+              </button>
               <div id="conditions-input-section">
                 <ul id="conditions-input-list" class="statblock-list"></ul>
               </div>
@@ -481,8 +530,9 @@
         <table>
           <tr>
             <td id="damagetypes-form">
-              <label for="damagetypes-input"
-                >Damage Types:<br />
+              <label for="damagetypes-input">
+                Damage Types:
+                <br />
                 <select
                   id="damagetypes-input"
                   onchange="FormFunctions.ShowHideDamageOther()"
@@ -503,18 +553,18 @@
                   <option
                     value="bludgeoning, piercing, and slashing from nonmagical attacks"
                   >
-                    Nonmagical Attacks</option
-                  >
+                    Nonmagical Attacks
+                  </option>
                   <option
                     value="bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered"
                   >
-                    Non-Silvered Attacks</option
-                  >
+                    Non-Silvered Attacks
+                  </option>
                   <option
                     value="bludgeoning, piercing, and slashing from nonmagical attacks that aren't adamantine"
                   >
-                    Non-Adamantine Attacks</option
-                  >
+                    Non-Adamantine Attacks
+                  </option>
                   <option value="*">Other</option>
                 </select>
               </label>
@@ -523,26 +573,30 @@
                 <button
                   type="button"
                   onclick="InputFunctions.AddDamageTypeInput('v')"
-                  >Vulnerable</button
                 >
+                  Vulnerable
+                </button>
                 <button
                   type="button"
                   onclick="InputFunctions.AddDamageTypeInput('r')"
-                  >Resistant</button
                 >
+                  Resistant
+                </button>
                 <button
                   type="button"
                   onclick="InputFunctions.AddDamageTypeInput('i')"
-                  >Immune</button
                 >
+                  Immune
+                </button>
               </div>
               <div id="damage-input-section">
                 <ul id="damage-input-list" class="statblock-list"></ul>
               </div>
             </td>
             <td id="languages-form">
-              <label for="languages-input"
-                >Languages:<br />
+              <label for="languages-input">
+                Languages:
+                <br />
                 <select
                   id="languages-input"
                   onchange="FormFunctions.ShowHideLanguageOther()"
@@ -571,29 +625,35 @@
                   <option value="*">Other</option>
                 </select>
               </label>
-              <label for="telepathy-input" style="margin-left: .5rem;"
-                >Telepathy:<br /><input
+              <label for="telepathy-input" style="margin-left: .5rem;">
+                Telepathy:
+                <br />
+                <input
                   type="number"
                   id="telepathy-input"
                   min="0"
                   max="995"
                   step="5"
                   value="0"
-                /> ft.</label
-              >
+                />
+                ft.
+              </label>
               <div>
                 <input id="other-language-input" type="text" value="" />
               </div>
               <div>
                 <button
                   type="button"
-                  onclick="InputFunctions.AddLanguageInput(true)">Speaks</button
+                  onclick="InputFunctions.AddLanguageInput(true)"
                 >
+                  Speaks
+                </button>
                 <button
                   type="button"
                   onclick="InputFunctions.AddLanguageInput(false)"
-                  >Understands</button
                 >
+                  Understands
+                </button>
                 but
                 <input
                   id="understands-but-input"
@@ -611,8 +671,8 @@
         <table id="senses-form">
           <tr>
             <td>
-              <label for="blindsight-input"
-                >Blindsight: <input
+              <label for="blindsight-input">
+                Blindsight: <input
                   type="number"
                   id="blindsight-input"
                   min="0"
@@ -621,83 +681,85 @@
                   value="0"
                   onchange="FormFunctions.ShowHideBlindBox()"
                 />
-                ft.</label
-              ><br />
+                ft.
+              </label>
+              <br />
               <div id="blind-box-note" class="box-note">
-                <label for="blindness-input"
-                  >(Blind beyond: <input
-                    type="checkbox"
-                    id="blindness-input"
-                  />)</label
-                >
+                <label for="blindness-input">
+                  (Blind beyond: <input type="checkbox" id="blindness-input" />
+                  )
+                </label>
               </div>
             </td>
-            <td
-              ><label for="darkvision-input"
-                >Darkvision: <input
+            <td>
+              <label for="darkvision-input">
+                Darkvision: <input
                   type="number"
                   id="darkvision-input"
                   min="0"
                   max="995"
                   step="5"
                   value="0"
-                /> ft.</label
-              ></td
-            >
-            <td
-              ><label for="tremorsense-input"
-                >Tremorsense: <input
+                />
+                ft.
+              </label>
+            </td>
+            <td>
+              <label for="tremorsense-input">
+                Tremorsense: <input
                   type="number"
                   id="tremorsense-input"
                   min="0"
                   max="995"
                   step="5"
                   value="0"
-                /> ft.</label
-              ></td
-            >
-            <td
-              ><label for="truesight-input"
-                >Truesight: <input
+                />
+                ft.
+              </label>
+            </td>
+            <td>
+              <label for="truesight-input">
+                Truesight: <input
                   type="number"
                   id="truesight-input"
                   min="0"
                   max="995"
                   step="5"
                   value="0"
-                /> ft.</label
-              ></td
-            >
+                />
+                ft.
+              </label>
+            </td>
           </tr>
         </table>
         <br />
         <div id="cr-form">
-          <label for="cr-input"
-            >Challenge Rating:
+          <label for="cr-input">
+            Challenge Rating:
             <select id="cr-input" onchange="InputFunctions.InputCR()"></select>
           </label>
           <br />
           <div id="prof-bonus"></div>
           <div id="custom-cr">
-            <label for="custom-cr-input"
-              >CR Text: <input
+            <label for="custom-cr-input">
+              CR Text: <input
                 id="custom-cr-input"
                 type="text"
                 value="1 (200 XP)"
                 placeholder="Leave blank to hide"
                 style="width: 16rem;"
-              /></label
-            >
+              />
+            </label>
             <br />
-            <label for="custom-prof-input"
-              >Proficiency Bonus: <input
+            <label for="custom-prof-input">
+              Proficiency Bonus: <input
                 type="number"
                 id="custom-prof-input"
                 min="-99"
                 max="99"
                 value="2"
-              /></label
-            >
+              />
+            </label>
           </div>
           <br />
         </div>
@@ -707,8 +769,10 @@
             <td>
               <label
                 for="short-name-input"
-                style="width: 100%; text-align: right;">Shortened Name:</label
+                style="width: 100%; text-align: right;"
               >
+                Shortened Name:
+              </label>
             </td>
             <td>
               <input
@@ -719,9 +783,10 @@
                 style="width: 30%;"
               />
               <div class="tooltip">
-                ?<span class="tooltiptext"
-                  >This will replace [MON] in ability text, unless left blank.</span
-                >
+                ?
+                <span class="tooltiptext">
+                  This will replace [MON] in ability text, unless left blank.
+                </span>
               </div>
             </td>
           </tr>
@@ -729,8 +794,10 @@
             <td>
               <label
                 for="plural-name-input"
-                style="text-align: right; width: 100%;">Shortened Plural:</label
+                style="text-align: right; width: 100%;"
               >
+                Shortened Plural:
+              </label>
             </td>
             <td>
               <input
@@ -741,141 +808,142 @@
                 style="width: 30%;"
               />
               <div class="tooltip">
-                ?<span class="tooltiptext"
-                  >This will replace [MONS] in ability text, unless left blank.</span
-                >
+                ?
+                <span class="tooltiptext">
+                  This will replace [MONS] in ability text, unless left blank.
+                </span>
               </div>
             </td>
           </tr>
         </table>
         <br />
         <div>
-          <label for="is-legendary-input"
-            ><b>Legendary Creature:</b>
+          <label for="is-legendary-input">
+            <b>Legendary Creature:</b>
             <input
               type="checkbox"
               id="is-legendary-input"
               onclick="FormFunctions.ShowHideLegendaryCreature()"
-            /></label
-          >
+            />
+          </label>
         </div>
         <div id="legendary-actions-form">
           <br />
-          <label for="is-mythic-input"
-            ><b>Mythic:</b>
+          <label for="is-mythic-input">
+            <b>Mythic:</b>
             <input
               type="checkbox"
               id="is-mythic-input"
               onclick="FormFunctions.ShowHideMythicCreature()"
-            /></label
-          >
-          <label for="has-lair-input"
-            ><b>Lair:</b>
+            />
+          </label>
+          <label for="has-lair-input">
+            <b>Lair:</b>
             <input
               type="checkbox"
               id="has-lair-input"
               onclick="FormFunctions.ShowHideLair()"
-            /></label
-          >
-          <label for="has-regional-input"
-            ><b>Regional:</b>
+            />
+          </label>
+          <label for="has-regional-input">
+            <b>Regional:</b>
             <input
               type="checkbox"
               id="has-regional-input"
               onclick="FormFunctions.ShowHideRegional()"
-            /></label
-          >
-          <br /><br />
+            />
+          </label>
+          <br />
+          <br />
           <b>Legendary Actions Description:</b>
           <div>
-            <label for="legendaries-descsection-input" style="width: 100%"
-              ><textarea id="legendaries-descsection-input" rows="4"
-              ></textarea></label
-            >
+            <label for="legendaries-descsection-input" style="width: 100%">
+              <textarea id="legendaries-descsection-input" rows="4"></textarea>
+            </label>
           </div>
           <div>
             <button
               type="button"
               onclick="InputFunctions.LegendaryDescriptionDefaultInput()"
-              >Reset to Default</button
             >
+              Reset to Default
+            </button>
           </div>
         </div>
         <div id="mythic-actions-form">
           <br />
           <b>Mythic Actions Description:</b>
           <div>
-            <label for="mythic-descsection-input" style="width: 100%"
-              ><textarea id="mythic-descsection-input" rows="4"
-              ></textarea></label
-            >
+            <label for="mythic-descsection-input" style="width: 100%">
+              <textarea id="mythic-descsection-input" rows="4"></textarea>
+            </label>
           </div>
           <div>
             <button
               type="button"
               onclick="InputFunctions.MythicDescriptionDefaultInput()"
-              >Reset to Default</button
             >
+              Reset to Default
+            </button>
           </div>
         </div>
         <div id="lair-actions-form">
           <br />
           <b>Lair Actions Description:</b>
           <div>
-            <label for="lair-descsection-input" style="width: 100%"
-              ><textarea id="lair-descsection-input" rows="4"></textarea></label
-            >
+            <label for="lair-descsection-input" style="width: 100%">
+              <textarea id="lair-descsection-input" rows="4"></textarea>
+            </label>
           </div>
           <b>Lair Actions End Note Description:</b>
           <div>
-            <label for="lair-end-descsection-input" style="width: 100%"
-              ><textarea id="lair-end-descsection-input" rows="4"
-              ></textarea></label
-            >
+            <label for="lair-end-descsection-input" style="width: 100%">
+              <textarea id="lair-end-descsection-input" rows="4"></textarea>
+            </label>
           </div>
           <div>
             <button
               type="button"
               onclick="InputFunctions.LairDescriptionDefaultInput()"
-              >Reset to Default</button
             >
+              Reset to Default
+            </button>
           </div>
         </div>
         <div id="regional-actions-form">
           <br />
           <b>Regional Effects Description:</b>
           <div>
-            <label for="regional-descsection-input" style="width: 100%"
-              ><textarea id="regional-descsection-input" rows="4"
-              ></textarea></label
-            >
+            <label for="regional-descsection-input" style="width: 100%">
+              <textarea id="regional-descsection-input" rows="4"></textarea>
+            </label>
           </div>
           <b>Regional Effects End Note Description:</b>
           <div>
-            <label for="regional-end-descsection-input" style="width: 100%"
-              ><textarea id="regional-end-descsection-input" rows="4"
-              ></textarea></label
-            >
+            <label for="regional-end-descsection-input" style="width: 100%">
+              <textarea id="regional-end-descsection-input" rows="4"></textarea>
+            </label>
           </div>
           <div>
             <button
               type="button"
               onclick="InputFunctions.RegionalDescriptionDefaultInput()"
-              >Reset to Default</button
             >
+              Reset to Default
+            </button>
           </div>
         </div>
         <br />
         <b>Abilities:</b>
         <div>
-          <label for="abilities-name-input" style="width: 100%;"
-            >Name: <input
+          <label for="abilities-name-input" style="width: 100%;">
+            Name: <input
               id="abilities-name-input"
               type="text"
               value=""
               style="margin-right: 40px; width: 30%;"
-            /></label
-          >
+            />
+          </label>
         </div>
         <div>
           <textarea id="abilities-desc-input" style="height: 10em;"></textarea>
@@ -885,67 +953,77 @@
             type="button"
             id="add-ability-button"
             onclick="InputFunctions.AddAbilityInput('abilities')"
-            >Add Ability</button
           >
+            Add Ability
+          </button>
           <button
             type="button"
             id="add-action-button"
             onclick="InputFunctions.AddAbilityInput('actions')"
-            >Add Action</button
           >
+            Add Action
+          </button>
           <button
             type="button"
             id="add-bonus-action-button"
             onclick="InputFunctions.AddAbilityInput('bonusActions')"
-            >Add Bonus Action</button
           >
+            Add Bonus Action
+          </button>
           <button
             type="button"
             id="add-reaction-button"
             onclick="InputFunctions.AddAbilityInput('reactions')"
-            >Add Reaction</button
           >
+            Add Reaction
+          </button>
           <button
             type="button"
             id="add-legendary-button"
             onclick="InputFunctions.AddAbilityInput('legendaries')"
-            >Add Legendary Action</button
           >
+            Add Legendary Action
+          </button>
           <button
             type="button"
             id="add-mythic-button"
             onclick="InputFunctions.AddAbilityInput('mythics')"
-            >Add Mythic Action</button
           >
+            Add Mythic Action
+          </button>
           <button
             type="button"
             id="add-lair-button"
             onclick="InputFunctions.AddAbilityInput('lairs')"
-            >Add Lair Action</button
           >
+            Add Lair Action
+          </button>
           <button
             type="button"
             id="add-regional-button"
             onclick="InputFunctions.AddAbilityInput('regionals')"
-            >Add Regional Effect</button
           >
+            Add Regional Effect
+          </button>
         </div>
         <div>
           <select id="common-ability-input"></select>
           <button
             type="button"
             id="add-common-ability-button"
-            onclick="InputFunctions.AddCommonAbilityInput()">Use Preset</button
+            onclick="InputFunctions.AddCommonAbilityInput()"
           >
+            Use Preset
+          </button>
         </div>
         <div>
-          <label for="format-helper-checkbox"
-            >Show Formatting Help: <input
+          <label for="format-helper-checkbox">
+            Show Formatting Help: <input
               type="checkbox"
               id="format-helper-checkbox"
               onclick="FormFunctions.ShowHideFormatHelper()"
-            /></label
-          >
+            />
+          </label>
         </div>
         <div id="format-helper" style="text-align: left; padding: 0 2rem;">
           <br />
@@ -954,57 +1032,77 @@
             reverse-indent.
           </div>
           <br />
-          <div><b>[MON]</b>: Shows the monster's name.</div>
-          <div><b>[CHA]</b>: Shows the monster's charisma modifier.</div>
-          <div><b>[3D6]</b>: Computes 3d6.</div>
           <div>
-            <b>[STR ATK]</b>: Calculates the modifier to the monster's attack
-            roll for a strength-based attack.
+            <b>[MON]</b>
+            : Shows the monster's name.
           </div>
           <div>
-            <b>[DEX 2D8]</b>: Calculates the damage roll for a dexterity-based
-            attack with damage dice 2d8.
+            <b>[CHA]</b>
+            : Shows the monster's charisma modifier.
           </div>
           <div>
-            <b>[WIS SAVE]</b>: Calculates the save DC vs the monster's wisdom.
+            <b>[3D6]</b>
+            : Computes 3d6.
           </div>
           <div>
-            <b>[3D6 + 1], [STR ATK - 2], [WIS SAVE + 3]</b>: Adds a modifier to
-            the given values.
+            <b>[STR ATK]</b>
+            : Calculates the modifier to the monster's attack roll for a strength-based
+            attack.
+          </div>
+          <div>
+            <b>[DEX 2D8]</b>
+            : Calculates the damage roll for a dexterity-based attack with damage
+            dice 2d8.
+          </div>
+          <div>
+            <b>[WIS SAVE]</b>
+            : Calculates the save DC vs the monster's wisdom.
+          </div>
+          <div>
+            <b>[3D6 + 1], [STR ATK - 2], [WIS SAVE + 3]</b>
+            : Adds a modifier to the given values.
           </div>
           <br />
         </div>
         <div style="text-align: left; min-height: 5rem;">
           <div id="abilities-input-section">
-            <b>Abilities:</b><br />
+            <b>Abilities:</b>
+            <br />
             <ul id="abilities-input-list" class="statblock-list"></ul>
           </div>
           <div id="actions-input-section">
-            <b>Actions:</b><br />
+            <b>Actions:</b>
+            <br />
             <ul id="actions-input-list" class="statblock-list"></ul>
           </div>
           <div id="bonusActions-input-section">
-            <b>Bonus Actions:</b><br />
+            <b>Bonus Actions:</b>
+            <br />
             <ul id="bonusActions-input-list" class="statblock-list"></ul>
           </div>
           <div id="reactions-input-section">
-            <b>Reactions:</b><br />
+            <b>Reactions:</b>
+            <br />
             <ul id="reactions-input-list" class="statblock-list"></ul>
           </div>
           <div id="legendaries-input-section">
-            <b>Legendary Actions:</b><br />
+            <b>Legendary Actions:</b>
+            <br />
             <ul id="legendaries-input-list" class="statblock-list"></ul>
           </div>
           <div id="mythic-input-section">
-            <b>Mythic Actions:</b><br />
+            <b>Mythic Actions:</b>
+            <br />
             <ul id="mythics-input-list" class="statblock-list"></ul>
           </div>
           <div id="lairs-input-section">
-            <b>Lair Actions:</b><br />
+            <b>Lair Actions:</b>
+            <br />
             <ul id="lairs-input-list" class="statblock-list"></ul>
           </div>
           <div id="regionals-input-section">
-            <b>Regional Effects:</b><br />
+            <b>Regional Effects:</b>
+            <br />
             <ul id="regionals-input-list" class="statblock-list"></ul>
           </div>
         </div>

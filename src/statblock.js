@@ -2,7 +2,9 @@ import { writable } from "svelte/store";
 import { defaultStatblock } from "./constants";
 
 export const statblockStore = () => {
-  const { set, update, subscribe } = writable(structuredClone(defaultStatblock));
+  const { set, update, subscribe } = writable(
+    structuredClone(defaultStatblock),
+  );
   return {
     set,
     update,
@@ -19,7 +21,7 @@ export function processOpen5ePreset(preset) {
   statblock.type = preset.type.trim();
   statblock.tag = preset.subtype.trim();
   statblock.alignment = preset.alignment.trim();
-  
+
   // Stats
   statblock.strPoints = preset.strength;
   statblock.dexPoints = preset.dexterity;
@@ -27,7 +29,7 @@ export function processOpen5ePreset(preset) {
   statblock.intPoints = preset.intelligence;
   statblock.wisPoints = preset.wisdom;
   statblock.chaPoints = preset.charisma;
-  
+
   // CR
   statblock.cr = preset.challenge_rating;
   return statblock;
@@ -87,11 +89,11 @@ export function processOpen5ePreset(preset) {
         : armorAcData + " (" + armorDescData + ")";
     else statblock.otherArmorDesc = armorAcData + " (unknown armor type)";
 
-    // Set the nat armor bonus for convenience- often the AC is for natural armor, but doesn't have it in the armor description
+    // Set the nat armor bonus for convenience:
+    // often the AC is for natural armor, but doesn't have it in the armor description.
     let natArmorBonusCheck = armorAcData - MathFunctions.GetAC("none");
 
-    if (natArmorBonusCheck > 0)
-      statblock.natArmorBonus = natArmorBonusCheck;
+    if (natArmorBonusCheck > 0) statblock.natArmorBonus = natArmorBonusCheck;
   } else
     statblock.otherArmorDesc =
       armorAcData + (preset.armor_desc ? " (" + preset.armor_desc + ")" : "");
@@ -138,7 +140,7 @@ export function processOpen5ePreset(preset) {
         skillCheck = StringFunctions.StringReplaceAll(
           currentSkill.name.toLowerCase(),
           " ",
-          "_"
+          "_",
         );
       if (preset.skills[skillCheck]) {
         let expectedExpertise =
@@ -147,7 +149,7 @@ export function processOpen5ePreset(preset) {
           skillVal = preset.skills[skillCheck];
         this.AddSkill(
           data.allSkills[index].name,
-          skillVal >= expectedExpertise ? " (ex)" : null
+          skillVal >= expectedExpertise ? " (ex)" : null,
         );
       }
     }
@@ -156,7 +158,7 @@ export function processOpen5ePreset(preset) {
   // Conditions
   statblock.conditions = [];
   let conditionsPresetArr = ArrayFunctions.FixPresetArray(
-    preset.condition_immunities
+    preset.condition_immunities,
   );
   for (let index = 0; index < conditionsPresetArr.length; index++)
     this.AddCondition(conditionsPresetArr[index]);
@@ -194,7 +196,7 @@ export function processOpen5ePreset(preset) {
       statblock.telepathy = parseInt(understandsBut.replace(/\D/g, ""));
       understandsBut = understandsBut.substr(
         0,
-        understandsBut.lastIndexOf(",")
+        understandsBut.lastIndexOf(","),
       );
     }
     statblock.understandsBut = understandsBut;
@@ -222,9 +224,7 @@ export function processOpen5ePreset(preset) {
     switch (senseName) {
       case "blindsight":
         statblock.blindsight = senseDist;
-        statblock.blind = senseString
-          .toLowerCase()
-          .includes("blind beyond");
+        statblock.blind = senseString.toLowerCase().includes("blind beyond");
         break;
       case "darkvision":
         statblock.darkvision = senseDist;
@@ -313,8 +313,7 @@ export function processOpen5ePreset(preset) {
     AbilityPresetLoop(legendariesPresetArr, "legendaries");
   if (statblock.isMythic) AbilityPresetLoop(mythicPresetArr, "mythics");
   if (statblock.isLair) AbilityPresetLoop(lairsPresetArr, "lairs");
-  if (statblock.isRegional)
-    AbilityPresetLoop(regionalsPresetArr, "regionals");
+  if (statblock.isRegional) AbilityPresetLoop(regionalsPresetArr, "regionals");
 
   statblock.separationPoint = undefined; // This will make the separation point be automatically calculated in UpdateStatblock
 }
