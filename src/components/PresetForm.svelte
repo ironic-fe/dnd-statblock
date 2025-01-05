@@ -1,12 +1,18 @@
 <script>
   import { getContext } from "svelte";
-  import { open5eApi} from "../constants";
-  import {processOpen5ePreset} from "../statblock";
+  import { open5eApi } from "../constants";
+  import { processOpen5ePreset } from "../statblock";
 
-  const statblock = getContext('statblock');
+  const statblock = getContext("statblock");
 
   async function getMonsterPresets() {
-    const url = open5eApi + "monsters/?format=json&fields=slug,name&limit=1000&document__slug=wotc-srd";
+    const apiParams = new URLSearchParams({
+      format: "json",
+      fields: "slug,name",
+      limit: "400",
+      document__slug: "wotc-srd",
+    });
+    const url = open5eApi + "monsters/?" + apiParams.toString();
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -40,11 +46,11 @@
   async function useMonsterPreset(slug) {
     let monster = await getMonster(slug);
     if (monster) {
-        statblock.set(processOpen5ePreset(monster));
-        // GetVariablesFunctions.SetPreset(jsonArr);
-        // FormFunctions.SetForms();
-        // UpdateStatblock();
-      }
+      statblock.set(processOpen5ePreset(monster));
+      // GetVariablesFunctions.SetPreset(jsonArr);
+      // FormFunctions.SetForms();
+      // UpdateStatblock();
+    }
   }
 
   let presetSelect;
@@ -52,9 +58,9 @@
 
 <div id="monster-select-form">
   <span>Monster Presets:</span>
-  <select bind:value={presetSelect} >
+  <select bind:value={presetSelect}>
     <option></option>
-    {#await getMonsterPresets() then presets} 
+    {#await getMonsterPresets() then presets}
       {#each presets as option}
         <option value={option.slug}>{option.name}</option>
       {/each}
@@ -68,11 +74,7 @@
   >
     <span>Use Preset</span>
   </button>
-  <button
-    type="button"
-    on:click={() => statblock.reset()}
-  >
+  <button type="button" on:click={() => statblock.reset()}>
     <span>Restore Default</span>
   </button>
-  
 </div>
