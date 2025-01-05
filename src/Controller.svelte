@@ -5,13 +5,6 @@
   import TypeForm from "./components/TypeForm.svelte";
 
   const statblock = getContext("statblock");
-
-  const update = (event) => {
-    const input = event.target;
-    if (input && input.hasAttribute("name")) {
-      $statblock[input.name] = input.value;
-    }
-  };
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
@@ -62,10 +55,10 @@
           type="button"
           onclick="UpdateBlockFromVariables(-1)"
         >
-          &rt;&rt;
+          >>
         </button>
         <hr />
-        <TypeForm {update} />
+        <TypeForm />
         <hr />
         <table id="armor-hitdice-form">
           <tr>

@@ -8,6 +8,8 @@ export const defaultStatblock = {
   tag: "",
   alignment: "any alignment",
   hitDice: 5,
+  hpText: "4 (1d8)",
+  customHP: false,
   armorName: "none",
   shieldBonus: 0,
   natArmorBonus: 3,
@@ -18,9 +20,7 @@ export const defaultStatblock = {
   flySpeed: 0,
   hover: false,
   swimSpeed: 0,
-  customHP: false,
   customSpeed: false,
-  hpText: "4 (1d8)",
   speedDesc: "30 ft.",
   strPoints: 10,
   dexPoints: 10,
@@ -68,3 +68,30 @@ export const defaultStatblock = {
   doubleColumns: false,
   separationPoint: 1,
 };
+
+export const sizes = [
+  { value: "tiny", name: "Tiny" },
+  { value: "small", name: "Small" },
+  { value: "medium", name: "Medium" },
+  { value: "large", name: "Large" },
+  { value: "huge", name: "Huge" },
+  { value: "gargantuan", name: "Gargantuan" },
+];
+
+export const types = [
+  { value: "aberration", name: "Aberration" },
+  { value: "beast", name: "Beast" },
+  { value: "celestial", name: "Celestial" },
+  { value: "construct", name: "Construct" },
+  { value: "dragon", name: "Dragon" },
+  { value: "elemental", name: "Elemental" },
+  { value: "fey", name: "Fey" },
+  { value: "fiend", name: "Fiend" },
+  { value: "giant", name: "Giant" },
+  { value: "humanoid", name: "Humanoid" },
+  { value: "monstrosity", name: "Monstrosity" },
+  { value: "ooze", name: "Ooze" },
+  { value: "plant", name: "Plant" },
+  { value: "undead", name: "Undead" },
+  { value: "*", name: "Other" },
+];
