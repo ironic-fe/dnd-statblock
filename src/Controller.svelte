@@ -1,9 +1,17 @@
 <script>
+  import { getContext } from "svelte";
   import PresetForm from "./components/PresetForm.svelte";
   import Statblock from "./components/Statblock.svelte";
-  import { getContext } from "svelte";
+  import TypeForm from "./components/TypeForm.svelte";
 
   const statblock = getContext("statblock");
+
+  const update = (event) => {
+    const input = event.target;
+    if (input && input.hasAttribute("name")) {
+      $statblock[input.name] = input.value;
+    }
+  };
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
@@ -57,77 +65,7 @@
           &rt;&rt;
         </button>
         <hr />
-        <table id="type-form">
-          <tr>
-            <td>
-              <label for="name-input">
-                Name: <br />
-                <input
-                  type="text"
-                  value={$statblock.name}
-                  on:change={(e) => ($statblock.name = e.target.value)}
-                />
-              </label>
-            </td>
-            <td>
-              <label for="size-input">
-                Size: <br />
-                <select id="size-input">
-                  <option value="tiny">Tiny</option>
-                  <option value="small">Small</option>
-                  <option value="medium" selected="selected">Medium</option>
-                  <option value="large">Large</option>
-                  <option value="huge">Huge</option>
-                  <option value="gargantuan">Gargantuan</option>
-                </select>
-              </label>
-            </td>
-            <td>
-              <label for="type-input">
-                Type: <br />
-                <select
-                  id="type-input"
-                  onchange="FormFunctions.ShowHideTypeOther()"
-                >
-                  <option value="aberration">Aberration</option>
-                  <option value="beast">Beast</option>
-                  <option value="celestial">Celestial</option>
-                  <option value="construct">Construct</option>
-                  <option value="dragon">Dragon</option>
-                  <option value="elemental">Elemental</option>
-                  <option value="fey">Fey</option>
-                  <option value="fiend">Fiend</option>
-                  <option value="giant">Giant</option>
-                  <option value="humanoid" selected>Humanoid</option>
-                  <option value="monstrosity">Monstrosity</option>
-                  <option value="ooze">Ooze</option>
-                  <option value="plant">Plant</option>
-                  <option value="undead">Undead</option>
-                  <option value="*">Other</option>
-                </select>
-              </label>
-              <div>
-                <input
-                  id="other-type-input"
-                  type="text"
-                  value="swarm of Tiny beasts"
-                />
-              </div>
-            </td>
-            <td>
-              <label for="tag-input">
-                Tag: <br />
-                <input id="tag-input" type="text" />
-              </label>
-            </td>
-            <td>
-              <label for="alignment-input">
-                Alignment: <br />
-                <input id="alignment-input" type="text" value="any alignment" />
-              </label>
-            </td>
-          </tr>
-        </table>
+        <TypeForm {update} />
         <hr />
         <table id="armor-hitdice-form">
           <tr>

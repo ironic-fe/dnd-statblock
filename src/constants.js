@@ -4,6 +4,7 @@ export const defaultStatblock = {
   name: "Monster",
   size: "medium",
   type: "humanoid",
+  otherType: "",
   tag: "",
   alignment: "any alignment",
   hitDice: 5,
@@ -65,5 +66,5 @@ export const defaultStatblock = {
   shortName: "",
   pluralName: "",
   doubleColumns: false,
-  separationPoint: 1
+  separationPoint: 1,
 };
