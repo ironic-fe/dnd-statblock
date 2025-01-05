@@ -1,5 +1,5 @@
 <script>
-  import Presets from "./components/Presets.svelte";
+  import PresetForm from "./components/PresetForm.svelte";
   import Statblock from "./components/Statblock.svelte";
 </script>
 
@@ -8,23 +8,7 @@
     <div class="content">
       <h1>D&D 5e Statblock Generator</h1>
       <br /><br />
-      <div id="monster-select-form">
-        Monster Presets:
-        <Presets />
-        <button
-          type="button"
-          id="monster-select-button"
-        >
-          <span>Use Preset</span>
-        </button>
-        <button
-          type="button"
-          id="monster-preset-reset"
-        >
-          <span>Restore Default</span>
-        </button>
-        
-      </div>
+      <PresetForm />
       <br />
 
       <Statblock />
