@@ -54,7 +54,7 @@
           type="button"
           onclick="UpdateBlockFromVariables(-1)"
         >
-          >>
+          &rt;&rt;
         </button>
         <hr />
         <table id="type-form">
