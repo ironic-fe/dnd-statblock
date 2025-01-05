@@ -1,24 +1,29 @@
 <script>
-  import Statblock from "./Statblock.svelte";
+  import Presets from "./components/Presets.svelte";
+  import Statblock from "./components/Statblock.svelte";
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
   <div class="container" style="text-align: center;">
     <div class="content">
-      <h1>D&amp;D 5e Statblock Generator</h1>
+      <h1>D&D 5e Statblock Generator</h1>
       <br /><br />
       <div id="monster-select-form">
         Monster Presets:
-        <select id="monster-select">
-          <option value="">-Select-</option>
-          <option value="default">Restore Default</option>
-        </select>
+        <Presets />
         <button
           type="button"
           id="monster-select-button"
-          onclick="InputFunctions.GetPreset()"
-          >Use Preset
+        >
+          <span>Use Preset</span>
         </button>
+        <button
+          type="button"
+          id="monster-preset-reset"
+        >
+          <span>Restore Default</span>
+        </button>
+        
       </div>
       <br />
 
