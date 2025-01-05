@@ -1,10 +1,16 @@
 <script>
-  async function getPresets() {
-    const url = "https://api.open5e.com/monsters/?format=json&fields=slug,name&limit=1000&document__slug=wotc-srd";
+  import { getContext } from "svelte";
+  import { open5eApi} from "../constants";
+  import {processOpen5ePreset} from "../statblock";
+
+  const statblock = getContext('statblock');
+
+  async function getMonsterPresets() {
+    const url = open5eApi + "monsters/?format=json&fields=slug,name&limit=1000&document__slug=wotc-srd";
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+        console.error(`Get monster presets error: ${response.status}`);
       }
 
       const json = await response.json();
@@ -12,10 +18,33 @@
         return json.results;
       }
     } catch (error) {
-      console.error(error.message);
+      console.error(`Get monster presets error: ${error.message}`);
     }
 
     return [];
+  }
+
+  async function getMonster(slug) {
+    const url = open5eApi + "monsters/" + slug;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.error(`Get monster error: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(`Get monster error: ${error.message}`);
+    }
+  }
+
+  async function useMonsterPreset(slug) {
+    let monster = await getMonster(slug);
+    if (monster) {
+        statblock.set(processOpen5ePreset(monster));
+        // GetVariablesFunctions.SetPreset(jsonArr);
+        // FormFunctions.SetForms();
+        // UpdateStatblock();
+      }
   }
 
   let presetSelect;
@@ -25,7 +54,7 @@
   <span>Monster Presets:</span>
   <select bind:value={presetSelect} >
     <option></option>
-    {#await getPresets() then presets} 
+    {#await getMonsterPresets() then presets} 
       {#each presets as option}
         <option value={option.slug}>{option.name}</option>
       {/each}
@@ -34,14 +63,14 @@
   <button
     type="button"
     on:click={() => {
-      console.log(presetSelect);
+      if (presetSelect) useMonsterPreset(presetSelect);
     }}
   >
     <span>Use Preset</span>
   </button>
   <button
     type="button"
-    id="monster-preset-reset"
+    on:click={() => statblock.reset()}
   >
     <span>Restore Default</span>
   </button>

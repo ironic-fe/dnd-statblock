@@ -1,6 +1,9 @@
 <script>
   import PresetForm from "./components/PresetForm.svelte";
   import Statblock from "./components/Statblock.svelte";
+  import { getContext } from "svelte";
+
+  const statblock = getContext('statblock');
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
@@ -15,23 +18,25 @@
 
       <div class="options">
         <form>
-          <label for="1col-input"
-            ><input
+          <label for="1col-input">
+            <input
               id="1col-input"
               type="radio"
               name="columns-input"
               value="1col"
               checked
-            /> One Column</label
-          >
-          <label for="2col-input" style="margin-left: .5rem;"
-            ><input
-              id="2col-input"
-              type="radio"
-              name="columns-input"
-              value="2col"
-            /> Two Columns</label
-          >
+            />
+            One Column
+          </label>
+          <label for="2col-input" style="margin-left: .5rem;">
+            <input
+                id="2col-input"
+                type="radio"
+                name="columns-input"
+                value="2col"
+            />
+            Two Columns
+          </label>
         </form>
         <button
           id="left-separator-button"
@@ -52,9 +57,9 @@
             <td>
               <label for="name-input"
                 >Name: <br /><input
-                  id="name-input"
                   type="text"
-                  value="Monster"
+                  value={$statblock.name}
+                  on:change={(e) => $statblock.name = e.target.value}
                 /></label
               >
             </td>
