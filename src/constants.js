@@ -96,21 +96,96 @@ export const types = [
   { value: "*", name: "Other" },
 ];
 
-export const armorTypes = [
-  { value: "none", name: "None" },
-  { value: "natural armor", name: "Natural Armor" },
-  { value: "mage armor", name: "Mage Armor" },
-  { value: "padded armor", name: "Padded" },
-  { value: "leather armor", name: "Leather" },
-  { value: "studded leather", name: "Studded Leather" },
-  { value: "hide armor", name: "Hide" },
-  { value: "chain shirt", name: "Chain Shirt" },
-  { value: "scale mail", name: "Scale Mail" },
-  { value: "breastplate", name: "Breastplate" },
-  { value: "half plate", name: "Half Plate" },
-  { value: "ring mail", name: "Ring Mail" },
-  { value: "chain mail", name: "Chain Mail" },
-  { value: "splint", name: "Splint" },
-  { value: "plate", name: "Plate" },
-  { value: "other", name: "Other" },
-];
+export const armorDefinitions = {
+  none: {
+    name: "None",
+    type: "special",
+  },
+  "natural armor": {
+    type: "special",
+    name: "Natural Armor",
+  },
+  "mage armor": {
+    type: "special",
+    name: "Mage Armor",
+  },
+  "padded armor": {
+    type: "light",
+    name: "Padded",
+    ac: 11,
+  },
+  "leather armor": {
+    type: "light",
+    name: "Leather",
+    ac: 11,
+  },
+  "studded leather": {
+    type: "light",
+    name: "Studded Leather",
+    ac: 12,
+  },
+  "hide armor": {
+    type: "medium",
+    name: "Hide",
+    ac: 12,
+  },
+  "chain shirt": {
+    type: "medium",
+    name: "Chain Shirt",
+    ac: 13,
+  },
+  "scale mail": {
+    type: "medium",
+    name: "Scale Mail",
+    ac: 14,
+  },
+  breastplate: {
+    type: "medium",
+    name: "Breastplate",
+    ac: 14,
+  },
+  "half plate": {
+    type: "medium",
+    name: "Half Plate",
+    ac: 15,
+  },
+  "ring mail": {
+    type: "heavy",
+    name: "Ring Mail",
+    ac: 14,
+  },
+  "chain mail": {
+    type: "heavy",
+    name: "Chain Mail",
+    ac: 16,
+  },
+  splint: {
+    type: "heavy",
+    name: "Splint",
+    ac: 17,
+  },
+  plate: {
+    type: "heavy",
+    name: "Plate",
+    ac: 18,
+  },
+  other: {
+    type: "special",
+    name: "Other",
+  },
+};
+
+export const armorTypes = Object.entries(armorDefinitions).map((definition) => {
+  const value = definition[0];
+  const properties = definition[1];
+  return { value, name: properties["name"] };
+});
+
+export const sizeToHitDie = {
+  tiny: 4,
+  small: 6,
+  medium: 8,
+  large: 10,
+  huge: 12,
+  gargantuan: 20,
+};

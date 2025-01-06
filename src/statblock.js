@@ -14,7 +14,7 @@ export const statblockStore = () => {
 };
 
 export function processOpen5ePreset(preset) {
-  const statblock = {};
+  const statblock = structuredClone(defaultStatblock);
   // Name and type
   statblock.name = preset.name.trim();
   statblock.size = preset.size.trim().toLowerCase();

@@ -1,10 +1,25 @@
+<script>
+  import markdownit from "markdown-it";
+  import { getContext } from "svelte";
+  import { getArmorData, getHP } from "../helpers";
+
+  const statblock = getContext("statblock");
+  const md = markdownit();
+</script>
+
 <div id="stat-block-wrapper">
   <div id="stat-block" class="stat-block">
     <hr class="orange-border" />
     <div class="section-left">
       <div class="creature-heading">
-        <h1 id="monster-name">Monster</h1>
-        <h2 id="monster-type">Size, type, alignment</h2>
+        <h1 id="monster-name">{$statblock.name}</h1>
+        <h2 id="monster-type">
+          <span>{$statblock.size},</span>
+          <span>
+            {$statblock.type}{$statblock.tag ? ` (${$statblock.tag})` : ""},
+          </span>
+          <span>{$statblock.alignment}</span>
+        </h2>
       </div>
       <!-- creature heading -->
       <svg height="5" width="100%" class="tapered-rule">
@@ -13,12 +28,14 @@
       <div class="top-stats">
         <div class="property-line first">
           <h4>Armor Class</h4>
-          <p id="armor-class"></p>
+          <p id="armor-class">
+            {@html md.renderInline(getArmorData($statblock))}
+          </p>
         </div>
         <!-- property line -->
         <div class="property-line">
           <h4>Hit Points</h4>
-          <p id="hit-points"></p>
+          <p id="hit-points">{getHP($statblock)}</p>
         </div>
         <!-- property line -->
         <div class="property-line last">

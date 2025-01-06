@@ -79,6 +79,128 @@ var SavedData = {
     },
 }
 
+// Update the main stat block
+function UpdateStatblock(moveSeparationPoint) {
+    // Set Separation Point
+    let separationMax = mon.abilities.length + mon.actions.length + mon.bonusActions.length + mon.reactions.length - 1;
+
+    if (mon.isLegendary)
+        separationMax += (mon.legendaries.length == 0 ? 1 : mon.legendaries.length);
+
+    if (mon.isMythic)
+        separationMax += (mon.mythics.length == 0 ? 1 : mon.mythics.length);
+
+    if (mon.isLair)
+        separationMax += (mon.lairs.length == 0 ? 1 : mon.lairs.length);
+
+    if (mon.isRegional)
+        separationMax += (mon.regionals.length == 0 ? 1 : mon.regionals.length);
+
+    if (mon.separationPoint == undefined)
+        mon.separationPoint = Math.floor(separationMax / 2);
+
+    if (moveSeparationPoint != undefined)
+        mon.separationPoint = MathFunctions.Clamp(mon.separationPoint + moveSeparationPoint, 0, separationMax);
+
+    // Save Before Continuing
+    SavedData.SaveToLocalStorage();
+
+    // One column or two columns
+    let statBlock = $("#stat-block");
+    mon.doubleColumns ? statBlock.addClass('wide') : statBlock.removeClass('wide');
+
+    // Name and type
+    $("#monster-name").html(StringFunctions.RemoveHtmlTags(mon.name));
+    $("#monster-type").html(StringFunctions.StringCapitalize(StringFunctions.RemoveHtmlTags(mon.size) + " " + mon.type +
+        (mon.tag == "" ? ", " : " (" + mon.tag + "), ") + mon.alignment));
+
+    // Armor Class
+    $("#armor-class").html(StringFunctions.FormatString(StringFunctions.RemoveHtmlTags(StringFunctions.GetArmorData())));
+
+    // Hit Points
+    $("#hit-points").html(StringFunctions.FormatString(StringFunctions.RemoveHtmlTags(StringFunctions.GetHP())));
+
+    // Speed
+    $("#speed").html(StringFunctions.FormatString(StringFunctions.RemoveHtmlTags(StringFunctions.GetSpeed())));
+
+    // Stats
+    let setPts = (id, pts) =>
+        $(id).html(pts + " (" + StringFunctions.RemoveHtmlTags(StringFunctions.BonusFormat(MathFunctions.PointsToBonus(pts))) + ")");
+    setPts("#strpts", mon.strPoints);
+    setPts("#dexpts", mon.dexPoints);
+    setPts("#conpts", mon.conPoints);
+    setPts("#intpts", mon.intPoints);
+    setPts("#wispts", mon.wisPoints);
+    setPts("#chapts", mon.chaPoints);
+
+    let propertiesDisplayArr = StringFunctions.GetPropertiesDisplayArr();
+
+    // Display All Properties (except CR)
+    let propertiesDisplayList = [];
+    propertiesDisplayList.push(StringFunctions.MakePropertyHTML(propertiesDisplayArr[0], true));
+    for (let index = 1; index < propertiesDisplayArr.length; index++)
+        propertiesDisplayList.push(StringFunctions.MakePropertyHTML(propertiesDisplayArr[index]));
+    $("#properties-list").html(propertiesDisplayList.join(""));
+
+    // Challenge Rating
+    let crDisplay = CrFunctions.GetString();
+    if (crDisplay && crDisplay.length > 0) {
+        $("#challenge-rating-line").show();
+        $("#challenge-rating").html(StringFunctions.FormatString(StringFunctions.RemoveHtmlTags(crDisplay)));
+    }
+    else
+        $("#challenge-rating-line").hide();
+
+    // Abilities
+    let traitsHTML = [];
+
+    if (mon.abilities.length > 0) AddToTraitList(traitsHTML, mon.abilities);
+    if (mon.actions.length > 0) AddToTraitList(traitsHTML, mon.actions, "<h3>Actions</h3>");
+    if (mon.bonusActions.length > 0) AddToTraitList(traitsHTML, mon.bonusActions, "<h3>Bonus Actions</h3>");
+    if (mon.reactions.length > 0) AddToTraitList(traitsHTML, mon.reactions, "<h3>Reactions</h3>");
+    if (mon.isLegendary && (mon.legendaries.length > 0 || mon.legendariesDescription.length > 0))
+        AddToTraitList(traitsHTML, mon.legendaries, mon.legendariesDescription == "" ?
+            "<h3>Legendary Actions</h3><div class='property-block'></div>" :
+            ["<h3>Legendary Actions</h3><div class='property-block'>", StringFunctions.FormatString(ReplaceTags(StringFunctions.RemoveHtmlTags(mon.legendariesDescription))), "</div></br>"], true);
+    if (mon.isMythic && mon.isLegendary && (mon.mythics.length > 0 || mon.mythicDescription.length > 0))
+        AddToTraitList(traitsHTML, mon.mythics, mon.mythicDescription == "" ?
+            "<h3>Mythic Actions</h3><div class='property-block'></div>" :
+            ["<h3>Mythic Actions</h3><div class='property-block'>", StringFunctions.FormatString(ReplaceTags(StringFunctions.RemoveHtmlTags(mon.mythicDescription))), "</div></br>"], true);    
+    if (mon.isLair && mon.isLegendary && (mon.lairs.length > 0 || mon.lairDescription.length > 0 || mon.lairDescriptionEnd.length > 0)) {
+        AddToTraitList(traitsHTML, mon.lairs, mon.lairDescription == "" ?
+            "<h3>Lair Actions</h3><div class='property-block'></div>" :
+            ["<h3>Lair Actions</h3><div class='property-block'>", StringFunctions.FormatString(ReplaceTags(StringFunctions.RemoveHtmlTags(mon.lairDescription))), "</div></br><ul>"], false, true);
+        traitsHTML.push("</ul>" + StringFunctions.FormatString(ReplaceTags(StringFunctions.RemoveHtmlTags(mon.lairDescriptionEnd))));
+    }
+    if (mon.isRegional && mon.isLegendary && (mon.regionals.length > 0 || mon.regionalDescription.length > 0 || mon.regionalDescriptionEnd.length > 0)) {
+        AddToTraitList(traitsHTML, mon.regionals, mon.regionalDescription == "" ?
+            "<h3>Regional Effects</h3><div class='property-block'></div>" :
+            ["<h3>Regional Effects</h3><div class='property-block'>", StringFunctions.FormatString(ReplaceTags(StringFunctions.RemoveHtmlTags(mon.regionalDescription))), "</div></br><ul>"], false, true);
+        traitsHTML.push("</ul>" + StringFunctions.FormatString(ReplaceTags(StringFunctions.RemoveHtmlTags(mon.regionalDescriptionEnd))));
+    }
+
+    // Add traits, taking into account the width of the block (one column or two columns)
+    let leftTraitsArr = [],
+        rightTraitsArr = [],
+        separationCounter = 0;
+    for (let index = 0; index < traitsHTML.length; index++) {
+        let trait = traitsHTML[index],
+            raiseCounter = true;
+        if (trait[0] == "*") {
+            raiseCounter = false;
+            trait = trait.substr(1);
+        }
+        (separationCounter < mon.separationPoint ? leftTraitsArr : rightTraitsArr).push(trait);
+        if (raiseCounter)
+            separationCounter++;
+    }
+    $("#traits-list-left").html(leftTraitsArr.join(""));
+    $("#traits-list-right").html(rightTraitsArr.join(""));
+
+    // Show or hide the separator input depending on how many columns there are
+    FormFunctions.ShowHideSeparatorInput();
+}
+
 // Function used by UpdateStatblock for abilities
 function AddToTraitList(traitsHTML, traitsArr, addElements, isLegendary = false, isLairRegional = false) {
 
