@@ -1,27 +1,5 @@
-import { armorDefinitions, sizeToHitDie } from "./constants";
-
-export const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-
-// Compute ability bonuses based on ability scores
-export const pointsToBonus = (points) => Math.floor(points / 2) - 5;
-
-export const getAcInteger = (mon) => {
-  let { shieldBonus, natArmorBonus, dexPoints } = mon;
-  let dexBonus = pointsToBonus(dexPoints);
-  let armor = armorDefinitions[mon.armorName];
-
-  if (armor) {
-    if (armor.type == "light") return armor.ac + dexBonus + shieldBonus;
-    if (armor.type == "medium")
-      return armor.ac + Math.min(dexBonus, 2) + shieldBonus;
-    if (armor.type == "heavy") return armor.ac + shieldBonus;
-    if (mon.armorName == "natural armor")
-      return 10 + dexBonus + natArmorBonus + shieldBonus;
-    if (mon.armorName == "other") return "other";
-  }
-
-  return 10 + dexBonus + shieldBonus;
-};
+import { challengeRatings, sizeToHitDie } from "../constants";
+import { pointsToBonus, getAcInteger } from "./statHelpers";
 
 // Add a + if the ability bonus is non-negative
 export const bonusFormat = (stat) => (stat >= 0 ? "+" + stat : stat);
@@ -94,4 +72,9 @@ export const getSenses = (mon) => {
     pp += CrFunctions.GetProf() * (ppData.hasOwnProperty("note") ? 2 : 1);
   sensesDisplayArr.push("passive Perception " + pp);
   return sensesDisplayArr.join(", ");
+};
+
+export const getChallengeRating = (mon) => {
+  if (mon.cr == "*") return mon.customCr.trim();
+  return `${mon.cr} (${challengeRatings[mon.cr].xp} XP)`;
 };

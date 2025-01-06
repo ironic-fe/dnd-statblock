@@ -1,5 +1,8 @@
 import { writable } from "svelte/store";
-import { defaultStatblock } from "./constants";
+import { armorDefinitions, defaultStatblock } from "./constants";
+import { getChallengeRating } from "./helpers/formatHelpers";
+import { parsePresetAc } from "./helpers/presetHelpers";
+import { getProficiencyBonus, getUnarmoredAc } from "./helpers/statHelpers";
 
 export const statblockStore = () => {
   const { set, update, subscribe } = writable(
@@ -14,7 +17,7 @@ export const statblockStore = () => {
 };
 
 export function processOpen5ePreset(preset) {
-  const statblock = structuredClone(defaultStatblock);
+  let statblock = structuredClone(defaultStatblock);
   // Name and type
   statblock.name = preset.name.trim();
   statblock.size = preset.size.trim().toLowerCase();
@@ -32,77 +35,18 @@ export function processOpen5ePreset(preset) {
 
   // CR
   statblock.cr = preset.challenge_rating;
-  return statblock;
-  statblock.customCr = CrFunctions.GetString();
-  statblock.customProf = CrFunctions.GetProf();
+  statblock.customCr = getChallengeRating(preset);
+  statblock.customProf = getProficiencyBonus(preset);
 
   // Armor Class
-  let armorAcData = preset.armor_class,
-    armorDescData = preset.armor_desc ? preset.armor_desc.split(",") : null;
-
-  // What type of armor do we have? If it doesn't match anything, use "other"
-  statblock.shieldBonus = 0;
-  if (armorDescData) {
-    statblock.armorName = armorDescData[0];
-    // If we have a shield and nothing else
-    if (armorDescData.length == 1 && armorDescData[0].trim() == "shield") {
-      statblock.shieldBonus = 2;
-      statblock.armorName = "none";
-    } else {
-      // If we have a shield in addition to something else
-      if (armorDescData.length > 1) {
-        if (armorDescData[1].trim() == "shield") {
-          statblock.shieldBonus = 2;
-          statblock.armorName = armorDescData[0];
-        }
-        // Or if it's just weird
-        else armorDescData = [armorDescData.join(",")];
-      }
-
-      // Is it natural armor?
-      if (statblock.armorName == "natural armor") {
-        let natArmorBonusCheck = armorAcData - MathFunctions.GetAC("none");
-        if (natArmorBonusCheck > 0)
-          statblock.natArmorBonus = natArmorBonusCheck;
-        // Weird edge case where the monster has a natural armor bonus of <= 0
-        else statblock.armorName = "other";
-      }
-
-      // Is it another type of armor we know?
-      else if (data.armors.hasOwnProperty(armorDescData[0].trim()))
-        statblock.armorName = armorDescData[0].trim();
-      // Is it mage armor?
-      else if (statblock.armorName.includes("mage armor"))
-        statblock.armorName = "mage armor";
-      // We have no idea what this armor is
-      else statblock.armorName = "other";
-    }
-  } else
-    statblock.armorName =
-      armorAcData == MathFunctions.GetAC("none") ? "none" : "other";
-
-  // In case it's an unknown armor type
-  if (statblock.armorName == "other") {
-    if (armorDescData)
-      statblock.otherArmorDesc = armorDescData[0].includes("(")
-        ? armorDescData
-        : armorAcData + " (" + armorDescData + ")";
-    else statblock.otherArmorDesc = armorAcData + " (unknown armor type)";
-
-    // Set the nat armor bonus for convenience:
-    // often the AC is for natural armor, but doesn't have it in the armor description.
-    let natArmorBonusCheck = armorAcData - MathFunctions.GetAC("none");
-
-    if (natArmorBonusCheck > 0) statblock.natArmorBonus = natArmorBonusCheck;
-  } else
-    statblock.otherArmorDesc =
-      armorAcData + (preset.armor_desc ? " (" + preset.armor_desc + ")" : "");
+  statblock = { ...statblock, ...parsePresetAc(preset) };
 
   // Hit Dice
   statblock.hitDice = parseInt(preset.hit_dice.split("d")[0]);
   statblock.hpText = statblock.hitDice.toString();
   statblock.customHP = false;
 
+  return statblock;
   // Speeds
   let GetSpeed = (speedList, speedType) =>
     speedList.hasOwnProperty(speedType) ? parseInt(speedList[speedType]) : 0;

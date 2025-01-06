@@ -1,7 +1,12 @@
 <script>
   import markdownit from "markdown-it";
   import { getContext } from "svelte";
-  import { getArmorData, getHP, formatAbilityScore } from "../helpers";
+  import {
+    getArmorData,
+    getHP,
+    formatAbilityScore,
+    getChallengeRating,
+  } from "../helpers/formatHelpers";
   import { abilityScores } from "../constants";
 
   const statblock = getContext("statblock");
@@ -64,7 +69,7 @@
         <div id="properties-list"></div>
         <div id="challenge-rating-line" class="property-line last">
           <h4>Challenge</h4>
-          <p id="challenge-rating"></p>
+          <p id="challenge-rating">{getChallengeRating($statblock)}</p>
         </div>
         <!-- property line -->
       </div>
