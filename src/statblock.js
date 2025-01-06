@@ -1,8 +1,11 @@
 import { writable } from "svelte/store";
-import { armorDefinitions, defaultStatblock } from "./constants";
-import { getChallengeRating } from "./helpers/formatHelpers";
+import { defaultStatblock } from "./constants";
+import {
+  displaySpeedDescription,
+  getChallengeRating,
+} from "./helpers/formatHelpers";
 import { parsePresetAc } from "./helpers/presetHelpers";
-import { getProficiencyBonus, getUnarmoredAc } from "./helpers/statHelpers";
+import { getProficiencyBonus } from "./helpers/statHelpers";
 
 export const statblockStore = () => {
   const { set, update, subscribe } = writable(
@@ -46,16 +49,15 @@ export function processOpen5ePreset(preset) {
   statblock.hpText = statblock.hitDice.toString();
   statblock.customHP = false;
 
-  return statblock;
   // Speeds
-  let GetSpeed = (speedList, speedType) =>
+  let getSpeed = (speedList, speedType) =>
     speedList.hasOwnProperty(speedType) ? parseInt(speedList[speedType]) : 0;
 
-  statblock.speed = GetSpeed(preset.speed, "walk");
-  statblock.burrowSpeed = GetSpeed(preset.speed, "burrow");
-  statblock.climbSpeed = GetSpeed(preset.speed, "climb");
-  statblock.flySpeed = GetSpeed(preset.speed, "fly");
-  statblock.swimSpeed = GetSpeed(preset.speed, "swim");
+  statblock.speed = getSpeed(preset.speed, "walk");
+  statblock.burrowSpeed = getSpeed(preset.speed, "burrow");
+  statblock.climbSpeed = getSpeed(preset.speed, "climb");
+  statblock.swimSpeed = getSpeed(preset.speed, "swim");
+  statblock.flySpeed = getSpeed(preset.speed, "fly");
   statblock.hover = preset.speed.hasOwnProperty("hover");
 
   if (preset.speed.hasOwnProperty("notes")) {
@@ -64,8 +66,10 @@ export function processOpen5ePreset(preset) {
       preset.speed.walk + " ft. (" + preset.speed.notes + ")";
   } else {
     statblock.customSpeed = false;
-    statblock.speedDesc = StringFunctions.GetSpeed();
+    statblock.speedDesc = displaySpeedDescription(statblock);
   }
+
+  return statblock;
 
   // Saving Throws
   statblock.sthrows = [];

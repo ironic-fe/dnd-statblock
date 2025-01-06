@@ -6,6 +6,7 @@
     getHP,
     formatAbilityScore,
     getChallengeRating,
+    displaySpeedDescription,
   } from "../helpers/formatHelpers";
   import { abilityScores } from "../constants";
 
@@ -46,7 +47,7 @@
         <!-- property line -->
         <div class="property-line last">
           <h4>Speed</h4>
-          <p id="speed"></p>
+          <p id="speed">{displaySpeedDescription($statblock)}</p>
         </div>
         <!-- property line -->
         <svg height="5" width="100%" class="tapered-rule">

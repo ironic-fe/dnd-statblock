@@ -4,6 +4,7 @@
   import Statblock from "./components/Statblock.svelte";
   import TypeForm from "./components/TypeForm.svelte";
   import HpAcForm from "./components/HpAcForm.svelte";
+  import SpeedForm from "./components/SpeedForm.svelte";
 
   const statblock = getContext("statblock");
 </script>
@@ -48,9 +49,6 @@
         >
           &lt;&lt;
         </button>
-        <button type="button" onclick="UpdateBlockFromVariables(0)">
-          Update Statblock
-        </button>
         <button
           id="right-separator-button"
           type="button"
@@ -62,116 +60,7 @@
         <TypeForm />
         <hr />
         <HpAcForm />
-        <br />
-        <table id="monster-speed-form">
-          <tr>
-            <td class="normal-speed-col">
-              <label for="speed-input">
-                Speed:
-                <br />
-                <input
-                  type="number"
-                  id="speed-input"
-                  min="0"
-                  max="995"
-                  step="5"
-                  value="30"
-                />
-                ft.
-              </label>
-            </td>
-            <td class="normal-speed-col">
-              <label for="burrow-speed-input">
-                Burrow Speed:
-                <br />
-                <input
-                  type="number"
-                  id="burrow-speed-input"
-                  min="0"
-                  max="995"
-                  step="5"
-                  value="0"
-                />
-                ft.
-              </label>
-            </td>
-            <td class="normal-speed-col">
-              <label for="climb-speed-input">
-                Climb Speed:
-                <br />
-                <input
-                  type="number"
-                  id="climb-speed-input"
-                  min="0"
-                  max="995"
-                  step="5"
-                  value="0"
-                />
-                ft.
-              </label>
-            </td>
-            <td class="normal-speed-col">
-              <label for="fly-speed-input">
-                Fly Speed:
-                <br />
-                <input
-                  type="number"
-                  id="fly-speed-input"
-                  min="0"
-                  max="995"
-                  step="5"
-                  value="0"
-                  onchange="FormFunctions.ShowHideHoverBox()"
-                />
-                ft.
-              </label>
-              <div id="hover-box-note" class="box-note">
-                <label for="hover-input">
-                  (Hover: <input type="checkbox" id="hover-input" />
-                  )
-                </label>
-              </div>
-            </td>
-            <td class="normal-speed-col">
-              <label for="swim-speed-input">
-                Swim Speed:
-                <br />
-                <input
-                  type="number"
-                  id="swim-speed-input"
-                  min="0"
-                  max="995"
-                  step="5"
-                  value="0"
-                />
-                ft.
-              </label>
-            </td>
-            <td colspan="5" class="custom-speed-col">
-              <label for="custom-speed-prompt" style="width: 100%;">
-                Speed: <input
-                  id="custom-speed-prompt"
-                  type="text"
-                  value="30 ft."
-                />
-              </label>
-              <br />
-            </td>
-            <td>
-              <br />
-              <div class="box-note">
-                <label for="custom-speed-input">
-                  (Custom Speed: <input
-                    id="custom-speed-input"
-                    type="checkbox"
-                    onchange="FormFunctions.ShowHideCustomSpeed()"
-                  />
-                  )
-                </label>
-              </div>
-            </td>
-          </tr>
-        </table>
+        <SpeedForm />
         <hr />
         <table id="monster-stats-form">
           <tr>

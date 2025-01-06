@@ -10,6 +10,7 @@
   export let options = [];
   export let min = null;
   export let max = null;
+  export let step = null;
   export let hidden = false;
 </script>
 
@@ -37,6 +38,7 @@
       on:change={() => ($statblock[name] = input.value)}
       {min}
       {max}
+      {step}
     />
   {/if}
   <slot name="afterInput" />

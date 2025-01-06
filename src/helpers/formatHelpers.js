@@ -33,7 +33,7 @@ export const getHP = (mon) => {
   return `${Math.max(avgHP, 1)} (${mon.hitDice}d${hitDieSize} - ${conHp})`;
 };
 
-export const getSpeed = (mon) => {
+export const displaySpeedDescription = (mon) => {
   if (mon.customSpeed) return mon.speedDesc;
   let speedsDisplayArr = [mon.speed + " ft."];
   if (mon.burrowSpeed > 0)
