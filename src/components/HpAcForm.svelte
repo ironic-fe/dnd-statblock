@@ -42,6 +42,7 @@
           <span>(Shield:</span>
           <input
             type="checkbox"
+            checked={$statblock.shieldBonus > 0}
             on:change={(e) =>
               ($statblock.shieldBonus = e.target.checked ? 2 : 0)}
           />
