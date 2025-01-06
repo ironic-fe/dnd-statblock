@@ -1,7 +1,8 @@
 <script>
   import markdownit from "markdown-it";
   import { getContext } from "svelte";
-  import { getArmorData, getHP } from "../helpers";
+  import { getArmorData, getHP, formatAbilityScore } from "../helpers";
+  import { abilityScores } from "../constants";
 
   const statblock = getContext("statblock");
   const md = markdownit();
@@ -47,36 +48,14 @@
           <polyline points="0,0 400,2.5 0,5"></polyline>
         </svg>
         <div class="scores">
-          <div class="scores-strength">
-            <h4>STR</h4>
-            <p id="strpts"></p>
-          </div>
-          <!-- scores strength -->
-          <div class="scores-dexterity">
-            <h4>DEX</h4>
-            <p id="dexpts"></p>
-          </div>
-          <!-- scores dexterity -->
-          <div class="scores-constitution">
-            <h4>CON</h4>
-            <p id="conpts"></p>
-          </div>
-          <!-- scores constitution -->
-          <div class="scores-intelligence">
-            <h4>INT</h4>
-            <p id="intpts"></p>
-          </div>
-          <!-- scores intelligence -->
-          <div class="scores-wisdom">
-            <h4>WIS</h4>
-            <p id="wispts"></p>
-          </div>
-          <!-- scores wisdom -->
-          <div class="scores-charisma">
-            <h4>CHA</h4>
-            <p id="chapts"></p>
-          </div>
-          <!-- scores charisma -->
+          {#each abilityScores as abilityScore}
+            <div>
+              <h4>{abilityScore.shortLabel}</h4>
+              <p>
+                {formatAbilityScore($statblock[abilityScore.value])}
+              </p>
+            </div>
+          {/each}
         </div>
         <!-- scores -->
         <svg height="5" width="100%" class="tapered-rule">

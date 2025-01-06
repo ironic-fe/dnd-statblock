@@ -26,6 +26,9 @@ export const getAcInteger = (mon) => {
 // Add a + if the ability bonus is non-negative
 export const bonusFormat = (stat) => (stat >= 0 ? "+" + stat : stat);
 
+export const formatAbilityScore = (stat) =>
+  `${stat} (${bonusFormat(pointsToBonus(stat))})`;
+
 // Get the string displayed for the monster's AC
 export const getArmorData = (mon) => {
   if (mon.armorName == "other") return mon.otherArmorDesc;

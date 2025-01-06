@@ -189,3 +189,12 @@ export const sizeToHitDie = {
   huge: 12,
   gargantuan: 20,
 };
+
+export const abilityScores = [
+  { shortLabel: "STR", value: "strPoints" },
+  { shortLabel: "DEX", value: "dexPoints" },
+  { shortLabel: "CON", value: "conPoints" },
+  { shortLabel: "INT", value: "intPoints" },
+  { shortLabel: "WIS", value: "wisPoints" },
+  { shortLabel: "CHA", value: "chaPoints" },
+];
