@@ -5,6 +5,7 @@
   import TypeForm from "./components/TypeForm.svelte";
   import HpAcForm from "./components/HpAcForm.svelte";
   import SpeedForm from "./components/SpeedForm.svelte";
+  import AbilitiesForm from "./components/AbilitiesForm.svelte";
 
   const statblock = getContext("statblock");
 </script>
@@ -62,106 +63,7 @@
         <HpAcForm />
         <SpeedForm />
         <hr />
-        <table id="monster-stats-form">
-          <tr>
-            <td>
-              <label for="str-input">
-                STR: <br />
-                <input
-                  type="number"
-                  id="str-input"
-                  min="1"
-                  max="99"
-                  value="10"
-                  onchange="FormFunctions.ChangeBonus('str')"
-                />
-                (
-                <span id="strbonus"></span>
-                )
-              </label>
-            </td>
-            <td>
-              <label for="dex-input">
-                DEX: <br />
-                <input
-                  type="number"
-                  id="dex-input"
-                  min="1"
-                  max="99"
-                  value="10"
-                  onchange="FormFunctions.ChangeBonus('dex')"
-                />
-                (
-                <span id="dexbonus"></span>
-                )
-              </label>
-            </td>
-            <td>
-              <label for="con-input">
-                CON: <br />
-                <input
-                  type="number"
-                  id="con-input"
-                  min="1"
-                  max="99"
-                  value="10"
-                  onchange="FormFunctions.ChangeBonus('con')"
-                />
-                (
-                <span id="conbonus"></span>
-                )
-              </label>
-            </td>
-            <td>
-              <label for="int-input">
-                INT: <br />
-                <input
-                  type="number"
-                  id="int-input"
-                  min="1"
-                  max="99"
-                  value="10"
-                  onchange="FormFunctions.ChangeBonus('int')"
-                />
-                (
-                <span id="intbonus"></span>
-                )
-              </label>
-            </td>
-            <td>
-              <label for="wis-input">
-                WIS: <br />
-                <input
-                  type="number"
-                  id="wis-input"
-                  min="1"
-                  max="99"
-                  value="10"
-                  onchange="FormFunctions.ChangeBonus('wis')"
-                />
-                (
-                <span id="wisbonus"></span>
-                )
-              </label>
-            </td>
-            <td>
-              <label for="cha-input">
-                CHA: <br />
-                <input
-                  type="number"
-                  id="cha-input"
-                  min="1"
-                  max="99"
-                  value="10"
-                  onchange="FormFunctions.ChangeBonus('cha')"
-                />
-                (
-                <span id="chabonus"></span>
-                )
-              </label>
-            </td>
-          </tr>
-        </table>
+        <AbilitiesForm />
         <hr />
         <table id="properties-lists-form">
           <tr>
