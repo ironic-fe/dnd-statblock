@@ -1,7 +1,6 @@
 <script>
   import { getContext } from "svelte";
   import { abilityScores } from "../constants";
-  import Input from "./Input.svelte";
 
   const statblock = getContext("statblock");
 
@@ -13,23 +12,35 @@
     <span>Saving Throws:</span>
     <select bind:value={selection}>
       {#each abilityScores as ability}
-        <option value={ability.shortLabel}>{ability.label}</option>
+        <option value={ability.value}>{ability.label}</option>
       {/each}
     </select>
   </label>
   <button
     type="button"
-    on:click|preventDefault={() => {
-      console.log($statblock.sthrows);
+    onclick={() => {
       if (selection && !$statblock.sthrows[selection]) {
-        $statblock.sthrows = [...$statblock.sthrows][selection] = 1;
+        $statblock.sthrows[selection] = 1;
       }
     }}
   >
     Proficient
   </button>
   <div id="sthrows-input-section">
-    <ul id="sthrows-input-list" class="statblock-list"></ul>
+    <ul id="sthrows-input-list" class="statblock-list">
+      {#each Object.keys($statblock.sthrows) as value}
+        <li>
+          <button
+            onclick={() => delete $statblock.sthrows[value]}
+            title="remove"
+            type="button"
+          >
+            <span>✗</span>
+          </button>
+          {value.toLocaleUpperCase()}
+        </li>
+      {/each}
+    </ul>
   </div>
 </div>
 <div id="skills-form">

@@ -7,6 +7,9 @@ export const bonusFormat = (stat) => (stat >= 0 ? "+" + stat : stat);
 export const formatAbilityScore = (stat) =>
   `${stat} (${bonusFormat(pointsToBonus(stat))})`;
 
+export const formatProfSkillBonus = (skillLevel, pb, abilityScore) =>
+  bonusFormat(pb * skillLevel + pointsToBonus(abilityScore));
+
 // Get the string displayed for the monster's AC
 export const getArmorData = (mon) => {
   if (mon.armorName == "other") return mon.otherArmorDesc;

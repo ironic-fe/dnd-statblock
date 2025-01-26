@@ -55,16 +55,16 @@ export function processOpen5ePreset(preset) {
     statblock.speedDesc = displaySpeedDescription(statblock);
   }
 
-  return statblock;
-
   // Saving Throws
   statblock.sthrows = [];
-  if (preset.strength_save) this.AddSthrow("str");
-  if (preset.dexterity_save) this.AddSthrow("dex");
-  if (preset.constitution_save) this.AddSthrow("con");
-  if (preset.intelligence_save) this.AddSthrow("int");
-  if (preset.wisdom_save) this.AddSthrow("wis");
-  if (preset.charisma_save) this.AddSthrow("cha");
+  if (preset.strength_save) statblock.sthrows["str"] = 1;
+  if (preset.dexterity_save) statblock.sthrows["dex"] = 1;
+  if (preset.constitution_save) statblock.sthrows["con"] = 1;
+  if (preset.intelligence_save) statblock.sthrows["int"] = 1;
+  if (preset.wisdom_save) statblock.sthrows["wis"] = 1;
+  if (preset.charisma_save) statblock.sthrows["cha"] = 1;
+
+  return statblock;
 
   // Skills
   statblock.skills = [];

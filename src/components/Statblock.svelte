@@ -7,6 +7,7 @@
     formatAbilityScore,
     getChallengeRating,
     displaySpeedDescription,
+    formatProfSkillBonus,
   } from "../helpers/formatHelpers";
   import { abilityScores } from "../constants";
 
@@ -48,6 +49,24 @@
         <div class="property-line last">
           <h4>Speed</h4>
           <p id="speed">{displaySpeedDescription($statblock)}</p>
+          <br />
+          {#if Object.values($statblock.sthrows).filter((x) => x).length}
+            <h4>Saving Throws</h4>
+            <p>
+              {Object.entries($statblock.sthrows)
+                .map(
+                  ([value, skillLevel]) =>
+                    value.toLocaleUpperCase() +
+                    " " +
+                    formatProfSkillBonus(
+                      skillLevel,
+                      $statblock.pb,
+                      $statblock[value],
+                    ),
+                )
+                .join(", ")}
+            </p>
+          {/if}
         </div>
         <!-- property line -->
         <svg height="5" width="100%" class="tapered-rule">
@@ -56,7 +75,7 @@
         <div class="scores">
           {#each abilityScores as abilityScore}
             <div>
-              <h4>{abilityScore.shortLabel}</h4>
+              <h4>{abilityScore.value.toLocaleUpperCase()}</h4>
               <p>
                 {formatAbilityScore($statblock[abilityScore.value])}
               </p>
@@ -181,13 +200,7 @@
     line-height: 1.2em;
   }
 
-  .property-line h4 {
-    color: #7a200d;
-  }
-
   .property-line {
-    text-indent: -1em;
-    padding-left: 1.1em;
     line-height: 1.4em;
   }
 
@@ -218,7 +231,10 @@
     font-size: 14px;
     line-height: 1.2em;
     text-transform: uppercase;
-    color: #7a200d;
+  }
+
+  h4 {
+    color: #922610;
   }
 
   .scores p {

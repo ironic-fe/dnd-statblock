@@ -6,7 +6,7 @@ export const statblockStore = () => {
     set,
     update,
     subscribe,
-    reset: () => set(structuredClone(defaultStatblock)),
+    reset: () => set(getStatblockTemplate()),
   };
 };
 
@@ -15,7 +15,10 @@ export const sthrows = $state([]);
 
 export const getStatblockTemplate = () => {
   const statblock = structuredClone(defaultStatblock);
+  // Assign property to store.
   statblock.sthrows = sthrows;
+  // Reset store value to empty array.
+  statblock.sthrows = [];
   return statblock;
 };
 
