@@ -1,7 +1,7 @@
 import { displaySpeedDescription, getChallengeRating } from "./formatHelpers";
 import { parsePresetAc } from "./presetHelpers";
 import { getProficiencyBonus } from "./statHelpers";
-import { defaultStatblock } from "../constants";
+import { defaultStatblock } from "../statblock";
 
 export const open5eApi = "https://api.open5e.com/";
 
