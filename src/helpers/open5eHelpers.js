@@ -15,12 +15,12 @@ export function processOpen5ePreset(preset) {
   statblock.alignment = preset.alignment.trim();
 
   // Stats
-  statblock.strPoints = preset.strength;
-  statblock.dexPoints = preset.dexterity;
-  statblock.conPoints = preset.constitution;
-  statblock.intPoints = preset.intelligence;
-  statblock.wisPoints = preset.wisdom;
-  statblock.chaPoints = preset.charisma;
+  statblock.str = preset.strength;
+  statblock.dex = preset.dexterity;
+  statblock.con = preset.constitution;
+  statblock.int = preset.intelligence;
+  statblock.wis = preset.wisdom;
+  statblock.cha = preset.charisma;
 
   // CR
   statblock.cr = preset.challenge_rating;

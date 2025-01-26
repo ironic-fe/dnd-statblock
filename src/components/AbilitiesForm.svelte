@@ -12,7 +12,7 @@
   <div class="row">
     {#each abilityScores as ability}
       {@const name = ability.value}
-      {@const label = ability.shortLabel}
+      {@const label = name.toLocaleUpperCase()}
       <div>
         <Input {name} {label} type="number" min="1" max="40">
           <span slot="afterInput">

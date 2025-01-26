@@ -5,14 +5,14 @@ export const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 // Compute ability bonuses based on ability scores
 export const pointsToBonus = (points) => Math.floor(points / 2) - 5;
 
-export const getUnarmoredAc = (dexPoints, shieldBonus = 0) => {
-  let dexBonus = pointsToBonus(dexPoints);
+export const getUnarmoredAc = (dex, shieldBonus = 0) => {
+  let dexBonus = pointsToBonus(dex);
   return 10 + dexBonus + shieldBonus;
 };
 
 export const getAcInteger = (mon) => {
-  let { shieldBonus, natArmorBonus, dexPoints } = mon;
-  let dexBonus = pointsToBonus(dexPoints);
+  let { shieldBonus, natArmorBonus, dex } = mon;
+  let dexBonus = pointsToBonus(dex);
   let armor = armorDefinitions[mon.armorName];
 
   if (armor) {
@@ -25,7 +25,7 @@ export const getAcInteger = (mon) => {
     if (mon.armorName == "other") return "other";
   }
 
-  return getUnarmoredAc(dexPoints, shieldBonus);
+  return getUnarmoredAc(dex, shieldBonus);
 };
 
 // These don't really fit anywhere else

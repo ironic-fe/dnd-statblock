@@ -120,12 +120,12 @@ export const sizeToHitDie = {
 };
 
 export const abilityScores = [
-  { shortLabel: "STR", value: "strPoints", label: "Strength" },
-  { shortLabel: "DEX", value: "dexPoints", label: "Dexterity" },
-  { shortLabel: "CON", value: "conPoints", label: "Constitution" },
-  { shortLabel: "INT", value: "intPoints", label: "Intelligence" },
-  { shortLabel: "WIS", value: "wisPoints", label: "Wisdom" },
-  { shortLabel: "CHA", value: "chaPoints", label: "Charisma" },
+  { value: "str", label: "Strength" },
+  { value: "dex", label: "Dexterity" },
+  { value: "con", label: "Constitution" },
+  { value: "int", label: "Intelligence" },
+  { value: "wis", label: "Wisdom" },
+  { value: "cha", label: "Charisma" },
 ];
 
 export const challengeRatings = {
