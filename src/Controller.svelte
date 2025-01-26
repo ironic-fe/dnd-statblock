@@ -6,7 +6,7 @@
   import HpAcForm from "./components/HpAcForm.svelte";
   import SpeedForm from "./components/SpeedForm.svelte";
   import AbilitiesForm from "./components/AbilitiesForm.svelte";
-  import Proficiency from "./components/Proficiency.svelte";
+  import ProficiencyForm from "./components/ProficiencyForm.svelte";
 
   const statblock = getContext("statblock");
 </script>
@@ -68,7 +68,7 @@
         <hr />
         <div class="group" id="properties-lists-form">
           <div class="row">
-            <Proficiency />
+            <ProficiencyForm />
             <div id="conditions-form">
               <label for="conditions-input">Condition Immunities:</label>
               <br />
