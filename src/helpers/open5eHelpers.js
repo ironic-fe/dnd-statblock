@@ -1,12 +1,12 @@
 import { displaySpeedDescription, getChallengeRating } from "./formatHelpers";
 import { parsePresetAc } from "./presetHelpers";
 import { getProficiencyBonus } from "./statHelpers";
-import { defaultStatblock } from "../statblock";
+import { getStatblockTemplate } from "../statblock.svelte";
 
 export const open5eApi = "https://api.open5e.com/";
 
 export function processOpen5ePreset(preset) {
-  let statblock = structuredClone(defaultStatblock);
+  let statblock = getStatblockTemplate();
   // Name and type
   statblock.name = preset.name.trim();
   statblock.size = preset.size.trim().toLowerCase();

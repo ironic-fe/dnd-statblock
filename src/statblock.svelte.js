@@ -1,15 +1,22 @@
 import { writable } from "svelte/store";
 
 export const statblockStore = () => {
-  const { set, update, subscribe } = writable(
-    structuredClone(defaultStatblock),
-  );
+  const { set, update, subscribe } = writable(getStatblockTemplate());
   return {
     set,
     update,
     subscribe,
     reset: () => set(structuredClone(defaultStatblock)),
   };
+};
+
+// eslint-disable-next-line no-undef
+export const sthrows = $state([]);
+
+export const getStatblockTemplate = () => {
+  const statblock = structuredClone(defaultStatblock);
+  statblock.sthrows = sthrows;
+  return statblock;
 };
 
 export const defaultStatblock = {
@@ -46,6 +53,7 @@ export const defaultStatblock = {
   tremorsense: 0,
   truesight: 0,
   telepathy: 0,
+  pb: 3,
   cr: 1,
   customCr: "",
   customProf: 2,
@@ -68,7 +76,6 @@ export const defaultStatblock = {
   mythics: [],
   lairs: [],
   regionals: [],
-  sthrows: [],
   skills: [],
   damagetypes: [],
   specialdamage: [],
