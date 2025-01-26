@@ -691,25 +691,15 @@
 </div>
 
 <style>
-  .indent {
-    text-indent: 1rem;
-  }
-
-  .reverse-indent {
-    text-indent: -1rem;
-    padding-left: 1rem;
-  }
-
-  .removable-list-item:hover {
-    color: red;
-    text-decoration: line-through;
-    cursor: pointer;
-  }
-
-  .statblock-image {
-    width: 12px;
-    height: 12px;
-    cursor: pointer;
+  .container {
+    font-family: Georgia, Arial, sans-serif;
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 125%;
+    background-image: url("../papyr.jpg");
+    border-style: none;
+    min-height: 100%;
   }
 
   .statblock-list {
@@ -728,29 +718,6 @@
 
   #format-helper {
     font-style: italic;
-  }
-
-  #legendaries-descsection {
-    margin: 8px 0 0;
-  }
-
-  #stat-helper tr {
-    border-bottom: 1px solid;
-  }
-
-  #stat-helper td,
-  #stat-helper th {
-    text-align: center;
-    border-left: 1px solid;
-    min-width: 3rem;
-    padding: 0 0.5rem;
-  }
-
-  #stat-helper .left-td {
-    border-left: none;
-    text-align: left;
-    padding-left: 0px;
-    font-weight: bold;
   }
 
   @media screen and (min-width: 992px) {

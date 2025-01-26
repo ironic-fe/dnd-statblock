@@ -119,43 +119,6 @@
       sans-serif;
   }
 
-  .stat-block.wide {
-    width: 800px;
-    text-align: center;
-  }
-
-  .stat-block.wide .section-left,
-  .stat-block.wide .section-right {
-    display: inline-block;
-    vertical-align: top;
-    width: 48%;
-    text-align: left;
-  }
-
-  .stat-block.wide .section-left {
-    margin-right: 1.5%;
-  }
-
-  .stat-block.wide .section-right {
-    margin-left: 1.5%;
-  }
-
-  /* @media screen and (max-width: 675px) { */
-  /* .stat-block.wide { */
-  /* min-width: 280px; */
-  /* } */
-  /* .stat-block.wide .section-left, */
-  /* .stat-block.wide .section-right { */
-  /* display: block; */
-  /* width: 100%; */
-  /* } */
-  /* .stat-block.wide .section-left { */
-  /* margin: 0; */
-  /* } */
-  /* .stat-block.wide .section-right { */
-  /* margin: 0; */
-  /* } */
-  /* } */
   .orange-border {
     display: block;
     background: #e69a28;
@@ -263,65 +226,6 @@
     line-height: 1.2em;
   }
 
-  .property-block h4,
-  .property-block p {
-    font-size: 12.5px;
-    line-height: 1.2em;
-    display: inline;
-    margin: 0;
-  }
-
-  .property-block h4 {
-    font-style: italic;
-  }
-
-  .property-block {
-    padding: 10px 2px 0;
-  }
-
-  .legendary {
-    padding-top: 0;
-  }
-
-  .legendary h4 {
-    padding-left: 2px;
-    font-style: normal;
-  }
-
-  .legendary p {
-    font-style: normal;
-  }
-
-  #traits-list-right > :first-child.property-block.legendary {
-    /* for a rare edge case where a legendary action is the first item in the second column */
-    padding-top: 10px;
-  }
-
-  .lairregional {
-    padding-top: 0;
-  }
-
-  .lairregional p {
-    font-style: normal;
-  }
-
-  #traits-list-right > :first-child.property-block.lairregional {
-    /* for a rare edge case where a lair action is the first item in the second column */
-    padding-top: 10px;
-  }
-
-  .actions h3 {
-    border-bottom: 2px solid #7a200d;
-    color: #7a200d;
-    font-size: 21px;
-    font-variant: small-caps;
-    font-weight: normal;
-    letter-spacing: 1px;
-    margin: 20px 0 0;
-    padding: 0 0 10px;
-    text-indent: 5px;
-  }
-
   .actions {
     margin: 0 0 20px;
   }
@@ -330,41 +234,8 @@
     margin: 0;
   }
 
-  .indent {
-    text-indent: 1em;
-  }
-
-  .reverse-indent {
-    text-indent: -1em;
-    padding-left: 1em;
-  }
-
   .top-stats {
     /* Fix for a weird bug that I can't figure out the cause of */
     margin: 0 0 10px;
-  }
-
-  #print-block h1,
-  #print-block h3,
-  #print-block h4,
-  #print-block p {
-    color: black;
-  }
-
-  #print-block h3 {
-    border-bottom-color: black;
-  }
-
-  #print-block .tapered-rule {
-    color: black;
-    fill: black;
-  }
-
-  #print-block .stat-block {
-    background: none;
-  }
-
-  #print-block .orange-border {
-    display: none;
   }
 </style>
