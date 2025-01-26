@@ -3,27 +3,48 @@
 
   const statblock = getContext("statblock");
 
-  let input;
-  export let name;
-  export let label;
-  export let type = "text";
-  export let options = [];
-  export let min = null;
-  export let max = null;
-  export let step = null;
-  export let hidden = false;
+  let input = $state();
+  /**
+   * @typedef {Object} Props
+   * @property {any} name
+   * @property {any} label
+   * @property {string} [type]
+   * @property {any} [options]
+   * @property {any} [min]
+   * @property {any} [max]
+   * @property {any} [step]
+   * @property {boolean} [hidden]
+   * @property {import('svelte').Snippet} [beforeLabel]
+   * @property {import('svelte').Snippet} [beforeInput]
+   * @property {import('svelte').Snippet} [afterInput]
+   */
+
+  /** @type {Props} */
+  let {
+    name,
+    label,
+    type = "text",
+    options = [],
+    min = null,
+    max = null,
+    step = null,
+    hidden = false,
+    beforeLabel,
+    beforeInput,
+    afterInput
+  } = $props();
 </script>
 
 <label {hidden}>
-  <slot name="beforeLabel" />
+  {@render beforeLabel?.()}
   <span>{label}:</span>
-  <slot name="beforeInput" />
+  {@render beforeInput?.()}
   {#if type == "select"}
     <select
       {name}
       bind:this={input}
       value={$statblock[name]}
-      on:change={() => ($statblock[name] = input.value)}
+      onchange={() => ($statblock[name] = input.value)}
     >
       {#each options as option}
         <option value={option.value}>{option.name}</option>
@@ -35,13 +56,13 @@
       {name}
       bind:this={input}
       value={$statblock[name]}
-      on:change={() => ($statblock[name] = input.value)}
+      onchange={() => ($statblock[name] = input.value)}
       {min}
       {max}
       {step}
     />
   {/if}
-  <slot name="afterInput" />
+  {@render afterInput?.()}
 </label>
 
 <style>

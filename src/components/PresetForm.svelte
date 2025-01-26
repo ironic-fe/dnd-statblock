@@ -53,7 +53,7 @@
     }
   }
 
-  let presetSelect;
+  let presetSelect = $state();
 </script>
 
 <div id="monster-select-form">
@@ -68,13 +68,13 @@
   </select>
   <button
     type="button"
-    on:click={() => {
+    onclick={() => {
       if (presetSelect) useMonsterPreset(presetSelect);
     }}
   >
     <span>Use Preset</span>
   </button>
-  <button type="button" on:click={() => statblock.reset()}>
+  <button type="button" onclick={() => statblock.reset()}>
     <span>Restore Default</span>
   </button>
 </div>
