@@ -97,9 +97,10 @@
 
 <style>
   #stat-block-wrapper {
-    margin: 20px;
+    margin: 1rem auto;
+    display: block;
+    width: fit-content;
     box-shadow: 0 0 1.5rem #867453;
-    display: inline-block;
   }
   .stat-block {
     text-align: left;

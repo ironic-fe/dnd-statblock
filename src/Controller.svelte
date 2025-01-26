@@ -12,7 +12,7 @@
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
-  <div class="container" style="text-align: center;">
+  <div class="container">
     <div class="content">
       <h1>D&D 5e Statblock Generator</h1>
       <br />
