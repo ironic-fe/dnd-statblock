@@ -13,10 +13,10 @@
   ];
 </script>
 
-<table id="monster-speed-form">
-  <tr>
+<div class="group" id="monster-speed-form">
+  <div class="row">
     {#each speedTypes as speedType}
-      <td class="normal-speed-col" hidden={$statblock.customSpeed}>
+      <div class="normal-speed-col" hidden={$statblock.customSpeed}>
         <Input
           name={speedType.name}
           label={speedType.label}
@@ -35,13 +35,13 @@
             </label>
           </div>
         {/if}
-      </td>
+      </div>
     {/each}
-    <td colspan="5" class="custom-speed-col" hidden={!$statblock.customSpeed}>
+    <div colspan="5" class="custom-speed-col" hidden={!$statblock.customSpeed}>
       <Input name="speedDesc" label="Speed" />
       <br />
-    </td>
-    <td>
+    </div>
+    <div>
       <br />
       <div class="box-note">
         <label for="custom-speed-input">
@@ -53,6 +53,6 @@
           )
         </label>
       </div>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>

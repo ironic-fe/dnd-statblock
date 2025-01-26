@@ -66,10 +66,10 @@
         <hr />
         <AbilitiesForm />
         <hr />
-        <table id="properties-lists-form">
-          <tr>
+        <div class="group" id="properties-lists-form">
+          <div class="row">
             <Proficiency />
-            <td id="conditions-form">
+            <div id="conditions-form">
               <label for="conditions-input">Condition Immunities:</label>
               <br />
               <select id="conditions-input">
@@ -98,13 +98,13 @@
               <div id="conditions-input-section">
                 <ul id="conditions-input-list" class="statblock-list"></ul>
               </div>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
         <br />
-        <table>
-          <tr>
-            <td id="damagetypes-form">
+        <div class="group">
+          <div class="row">
+            <div id="damagetypes-form">
               <label for="damagetypes-input">
                 Damage Types:
                 <br />
@@ -167,8 +167,8 @@
               <div id="damage-input-section">
                 <ul id="damage-input-list" class="statblock-list"></ul>
               </div>
-            </td>
-            <td id="languages-form">
+            </div>
+            <div id="languages-form">
               <label for="languages-input">
                 Languages:
                 <br />
@@ -239,13 +239,13 @@
               <div id="languages-input-section">
                 <ul id="languages-input-list" class="statblock-list"></ul>
               </div>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
         <br />
-        <table id="senses-form">
-          <tr>
-            <td>
+        <div class="group" id="senses-form">
+          <div class="row">
+            <div>
               <label for="blindsight-input">
                 Blindsight: <input
                   type="number"
@@ -265,8 +265,8 @@
                   )
                 </label>
               </div>
-            </td>
-            <td>
+            </div>
+            <div>
               <label for="darkvision-input">
                 Darkvision: <input
                   type="number"
@@ -278,8 +278,8 @@
                 />
                 ft.
               </label>
-            </td>
-            <td>
+            </div>
+            <div>
               <label for="tremorsense-input">
                 Tremorsense: <input
                   type="number"
@@ -291,8 +291,8 @@
                 />
                 ft.
               </label>
-            </td>
-            <td>
+            </div>
+            <div>
               <label for="truesight-input">
                 Truesight: <input
                   type="number"
@@ -304,9 +304,9 @@
                 />
                 ft.
               </label>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
         <br />
         <div id="cr-form">
           <label for="cr-input">
@@ -342,17 +342,17 @@
           <br />
         </div>
         <hr />
-        <table>
-          <tr>
-            <td>
+        <div class="group">
+          <div class="row">
+            <div>
               <label
                 for="short-name-input"
                 style="width: 100%; text-align: right;"
               >
                 Shortened Name:
               </label>
-            </td>
-            <td>
+            </div>
+            <div>
               <input
                 id="short-name-input"
                 type="text"
@@ -366,18 +366,18 @@
                   This will replace [MON] in ability text, unless left blank.
                 </span>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
+            </div>
+          </div>
+          <div class="row">
+            <div>
               <label
                 for="plural-name-input"
                 style="text-align: right; width: 100%;"
               >
                 Shortened Plural:
               </label>
-            </td>
-            <td>
+            </div>
+            <div>
               <input
                 id="plural-name-input"
                 type="text"
@@ -391,9 +391,9 @@
                   This will replace [MONS] in ability text, unless left blank.
                 </span>
               </div>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
         <br />
         <div>
           <label for="is-legendary-input">

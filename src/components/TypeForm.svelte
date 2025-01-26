@@ -6,15 +6,15 @@
   const statblock = getContext("statblock");
 </script>
 
-<table id="type-form">
-  <tr>
-    <td>
+<div class="group" id="type-form">
+  <div class="row">
+    <div>
       <Input name="name" label="Name" />
-    </td>
-    <td>
+    </div>
+    <div>
       <Input name="size" label="Size" type="select" options={sizes} />
-    </td>
-    <td>
+    </div>
+    <div>
       <Input name="type" label="Type" type="select" options={types} />
       <div>
         <input
@@ -25,12 +25,12 @@
           on:change={(e) => ($statblock.otherType = e.target.value)}
         />
       </div>
-    </td>
-    <td>
+    </div>
+    <div>
       <Input name="tag" label="Tag" />
-    </td>
-    <td>
+    </div>
+    <div>
       <Input name="alignment" label="Alignment" />
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>

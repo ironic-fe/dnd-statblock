@@ -126,22 +126,8 @@ textarea {
   width: 80%;
 }
 
-table {
-  table-layout: fixed;
-  text-align: left;
-  width: 100%;
-}
-
-td {
-  text-align: left;
-  vertical-align: top;
-}
-
-canvas {
-  max-width: 100%;
-}
-
 label {
+  text-align: start;
   margin-bottom: 0;
 }
 
@@ -284,4 +270,10 @@ select {
   background: #fff;
   border: 1px solid;
   border-radius: 2px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

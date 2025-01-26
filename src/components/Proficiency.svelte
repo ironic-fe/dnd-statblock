@@ -8,7 +8,7 @@
   let selection;
 </script>
 
-<td>
+<div>
   <label>
     <span>Saving Throws:</span>
     <select bind:value={selection}>
@@ -31,8 +31,8 @@
   <div id="sthrows-input-section">
     <ul id="sthrows-input-list" class="statblock-list"></ul>
   </div>
-</td>
-<td id="skills-form">
+</div>
+<div id="skills-form">
   <label for="skills-input">Skills:</label>
   <br />
   <select id="skills-input">
@@ -64,4 +64,4 @@
   <div id="skills-input-section">
     <ul id="skills-input-list" class="statblock-list"></ul>
   </div>
-</td>
+</div>

@@ -6,10 +6,10 @@
   const statblock = getContext("statblock");
 </script>
 
-<table id="armor-hitdice-form">
-  <tr>
-    <td></td>
-    <td>
+<div class="group" id="armor-hitdice-form">
+  <div class="row">
+    <div></div>
+    <div>
       <Input
         name="hitDice"
         label="Hit Dice"
@@ -29,8 +29,8 @@
           <span>)</span>
         </label>
       </div>
-    </td>
-    <td>
+    </div>
+    <div>
       <Input
         name="armorName"
         label="Armor Type"
@@ -49,8 +49,8 @@
           <span>)</span>
         </label>
       </div>
-    </td>
-    <td colspan="2">
+    </div>
+    <div colspan="2">
       <Input
         name="natArmorBonus"
         label="Natural Armor Bonus"
@@ -68,6 +68,6 @@
           <i>Use _ to italicize</i>
         </div>
       </Input>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
