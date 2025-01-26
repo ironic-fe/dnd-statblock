@@ -3,6 +3,8 @@ import { parsePresetAc } from "./presetHelpers";
 import { getProficiencyBonus } from "./statHelpers";
 import { defaultStatblock } from "../constants";
 
+export const open5eApi = "https://api.open5e.com/";
+
 export function processOpen5ePreset(preset) {
   let statblock = structuredClone(defaultStatblock);
   // Name and type

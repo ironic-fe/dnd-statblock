@@ -1,5 +1,3 @@
-export const open5eApi = "https://api.open5e.com/";
-
 export const defaultStatblock = {
   name: "Monster",
   size: "medium",
