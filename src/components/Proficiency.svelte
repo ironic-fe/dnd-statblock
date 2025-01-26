@@ -55,10 +55,10 @@
     <option value="stealth">Stealth</option>
     <option value="survival">Survival</option>
   </select>
-  <button type="button" onclick="InputFunctions.AddSkillInput()">
+  <button type="button" data-onclick="InputFunctions.AddSkillInput()">
     Proficient
   </button>
-  <button type="button" onclick="InputFunctions.AddSkillInput(' (ex)')">
+  <button type="button" data-onclick="InputFunctions.AddSkillInput(' (ex)')">
     Expert
   </button>
   <div id="skills-input-section">

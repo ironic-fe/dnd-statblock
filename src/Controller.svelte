@@ -47,14 +47,14 @@
         <button
           id="left-separator-button"
           type="button"
-          onclick="UpdateBlockFromVariables(1)"
+          data-onclick="UpdateBlockFromVariables(1)"
         >
           &lt;&lt;
         </button>
         <button
           id="right-separator-button"
           type="button"
-          onclick="UpdateBlockFromVariables(-1)"
+          data-onclick="UpdateBlockFromVariables(-1)"
         >
           >>
         </button>
@@ -91,7 +91,7 @@
               </select>
               <button
                 type="button"
-                onclick="InputFunctions.AddConditionInput()"
+                data-onclick="InputFunctions.AddConditionInput()"
               >
                 Immune
               </button>
@@ -110,7 +110,7 @@
                 <br />
                 <select
                   id="damagetypes-input"
-                  onchange="FormFunctions.ShowHideDamageOther()"
+                  data-onchange="FormFunctions.ShowHideDamageOther()"
                 >
                   <option value="acid">Acid</option>
                   <option value="bludgeoning">Bludgeoning</option>
@@ -147,19 +147,19 @@
               <div>
                 <button
                   type="button"
-                  onclick="InputFunctions.AddDamageTypeInput('v')"
+                  data-onclick="InputFunctions.AddDamageTypeInput('v')"
                 >
                   Vulnerable
                 </button>
                 <button
                   type="button"
-                  onclick="InputFunctions.AddDamageTypeInput('r')"
+                  data-onclick="InputFunctions.AddDamageTypeInput('r')"
                 >
                   Resistant
                 </button>
                 <button
                   type="button"
-                  onclick="InputFunctions.AddDamageTypeInput('i')"
+                  data-onclick="InputFunctions.AddDamageTypeInput('i')"
                 >
                   Immune
                 </button>
@@ -174,7 +174,7 @@
                 <br />
                 <select
                   id="languages-input"
-                  onchange="FormFunctions.ShowHideLanguageOther()"
+                  data-onchange="FormFunctions.ShowHideLanguageOther()"
                 >
                   <option value="All">All</option>
                   <option value="Abyssal">Abyssal</option>
@@ -219,13 +219,13 @@
               <div>
                 <button
                   type="button"
-                  onclick="InputFunctions.AddLanguageInput(true)"
+                  data-onclick="InputFunctions.AddLanguageInput(true)"
                 >
                   Speaks
                 </button>
                 <button
                   type="button"
-                  onclick="InputFunctions.AddLanguageInput(false)"
+                  data-onclick="InputFunctions.AddLanguageInput(false)"
                 >
                   Understands
                 </button>
@@ -254,7 +254,7 @@
                   max="995"
                   step="5"
                   value="0"
-                  onchange="FormFunctions.ShowHideBlindBox()"
+                  data-onchange="FormFunctions.ShowHideBlindBox()"
                 />
                 ft.
               </label>
@@ -311,7 +311,10 @@
         <div id="cr-form">
           <label for="cr-input">
             Challenge Rating:
-            <select id="cr-input" onchange="InputFunctions.InputCR()"></select>
+            <select
+              id="cr-input"
+              data-onchange="InputFunctions.InputCR()"
+            ></select>
           </label>
           <br />
           <div id="prof-bonus"></div>
@@ -398,7 +401,7 @@
             <input
               type="checkbox"
               id="is-legendary-input"
-              onclick="FormFunctions.ShowHideLegendaryCreature()"
+              data-onclick="FormFunctions.ShowHideLegendaryCreature()"
             />
           </label>
         </div>
@@ -409,7 +412,7 @@
             <input
               type="checkbox"
               id="is-mythic-input"
-              onclick="FormFunctions.ShowHideMythicCreature()"
+              data-onclick="FormFunctions.ShowHideMythicCreature()"
             />
           </label>
           <label for="has-lair-input">
@@ -417,7 +420,7 @@
             <input
               type="checkbox"
               id="has-lair-input"
-              onclick="FormFunctions.ShowHideLair()"
+              data-onclick="FormFunctions.ShowHideLair()"
             />
           </label>
           <label for="has-regional-input">
@@ -425,7 +428,7 @@
             <input
               type="checkbox"
               id="has-regional-input"
-              onclick="FormFunctions.ShowHideRegional()"
+              data-onclick="FormFunctions.ShowHideRegional()"
             />
           </label>
           <br />
@@ -439,7 +442,7 @@
           <div>
             <button
               type="button"
-              onclick="InputFunctions.LegendaryDescriptionDefaultInput()"
+              data-onclick="InputFunctions.LegendaryDescriptionDefaultInput()"
             >
               Reset to Default
             </button>
@@ -456,7 +459,7 @@
           <div>
             <button
               type="button"
-              onclick="InputFunctions.MythicDescriptionDefaultInput()"
+              data-onclick="InputFunctions.MythicDescriptionDefaultInput()"
             >
               Reset to Default
             </button>
@@ -479,7 +482,7 @@
           <div>
             <button
               type="button"
-              onclick="InputFunctions.LairDescriptionDefaultInput()"
+              data-onclick="InputFunctions.LairDescriptionDefaultInput()"
             >
               Reset to Default
             </button>
@@ -502,7 +505,7 @@
           <div>
             <button
               type="button"
-              onclick="InputFunctions.RegionalDescriptionDefaultInput()"
+              data-onclick="InputFunctions.RegionalDescriptionDefaultInput()"
             >
               Reset to Default
             </button>
@@ -527,56 +530,56 @@
           <button
             type="button"
             id="add-ability-button"
-            onclick="InputFunctions.AddAbilityInput('abilities')"
+            data-onclick="InputFunctions.AddAbilityInput('abilities')"
           >
             Add Ability
           </button>
           <button
             type="button"
             id="add-action-button"
-            onclick="InputFunctions.AddAbilityInput('actions')"
+            data-onclick="InputFunctions.AddAbilityInput('actions')"
           >
             Add Action
           </button>
           <button
             type="button"
             id="add-bonus-action-button"
-            onclick="InputFunctions.AddAbilityInput('bonusActions')"
+            data-onclick="InputFunctions.AddAbilityInput('bonusActions')"
           >
             Add Bonus Action
           </button>
           <button
             type="button"
             id="add-reaction-button"
-            onclick="InputFunctions.AddAbilityInput('reactions')"
+            data-onclick="InputFunctions.AddAbilityInput('reactions')"
           >
             Add Reaction
           </button>
           <button
             type="button"
             id="add-legendary-button"
-            onclick="InputFunctions.AddAbilityInput('legendaries')"
+            data-onclick="InputFunctions.AddAbilityInput('legendaries')"
           >
             Add Legendary Action
           </button>
           <button
             type="button"
             id="add-mythic-button"
-            onclick="InputFunctions.AddAbilityInput('mythics')"
+            data-onclick="InputFunctions.AddAbilityInput('mythics')"
           >
             Add Mythic Action
           </button>
           <button
             type="button"
             id="add-lair-button"
-            onclick="InputFunctions.AddAbilityInput('lairs')"
+            data-onclick="InputFunctions.AddAbilityInput('lairs')"
           >
             Add Lair Action
           </button>
           <button
             type="button"
             id="add-regional-button"
-            onclick="InputFunctions.AddAbilityInput('regionals')"
+            data-onclick="InputFunctions.AddAbilityInput('regionals')"
           >
             Add Regional Effect
           </button>
@@ -586,7 +589,7 @@
           <button
             type="button"
             id="add-common-ability-button"
-            onclick="InputFunctions.AddCommonAbilityInput()"
+            data-onclick="InputFunctions.AddCommonAbilityInput()"
           >
             Use Preset
           </button>
@@ -596,7 +599,7 @@
             Show Formatting Help: <input
               type="checkbox"
               id="format-helper-checkbox"
-              onclick="FormFunctions.ShowHideFormatHelper()"
+              data-onclick="FormFunctions.ShowHideFormatHelper()"
             />
           </label>
         </div>
