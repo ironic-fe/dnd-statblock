@@ -1,7 +1,7 @@
 <script>
   import { getContext } from "svelte";
   import { open5eApi } from "../constants";
-  import { processOpen5ePreset } from "../statblock";
+  import { processOpen5ePreset } from "../helpers/open5eHelpers";
 
   const statblock = getContext("statblock");
 
