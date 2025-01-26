@@ -6,6 +6,7 @@
   import HpAcForm from "./components/HpAcForm.svelte";
   import SpeedForm from "./components/SpeedForm.svelte";
   import AbilitiesForm from "./components/AbilitiesForm.svelte";
+  import Proficiency from "./components/Proficiency.svelte";
 
   const statblock = getContext("statblock");
 </script>
@@ -67,60 +68,7 @@
         <hr />
         <table id="properties-lists-form">
           <tr>
-            <td id="sthrows-form">
-              <label for="sthrows-input">Saving Throws:</label>
-              <br />
-              <select id="sthrows-input">
-                <option value="str">Strength</option>
-                <option value="dex">Dexterity</option>
-                <option value="con">Constitution</option>
-                <option value="int">Intelligence</option>
-                <option value="wis">Wisdom</option>
-                <option value="cha">Charisma</option>
-              </select>
-              <button type="button" onclick="InputFunctions.AddSthrowInput()">
-                Proficient
-              </button>
-              <div id="sthrows-input-section">
-                <ul id="sthrows-input-list" class="statblock-list"></ul>
-              </div>
-            </td>
-            <td id="skills-form">
-              <label for="skills-input">Skills:</label>
-              <br />
-              <select id="skills-input">
-                <option value="acrobatics">Acrobatics</option>
-                <option value="animal Handling">Animal Handling</option>
-                <option value="arcana">Arcana</option>
-                <option value="athletics">Athletics</option>
-                <option value="deception">Deception</option>
-                <option value="history">History</option>
-                <option value="insight">Insight</option>
-                <option value="intimidation">Intimidation</option>
-                <option value="investigation">Investigation</option>
-                <option value="medicine">Medicine</option>
-                <option value="nature">Nature</option>
-                <option value="perception">Perception</option>
-                <option value="performance">Performance</option>
-                <option value="persuasion">Persuasion</option>
-                <option value="religion">Religion</option>
-                <option value="sleight of Hand">Sleight of Hand</option>
-                <option value="stealth">Stealth</option>
-                <option value="survival">Survival</option>
-              </select>
-              <button type="button" onclick="InputFunctions.AddSkillInput()">
-                Proficient
-              </button>
-              <button
-                type="button"
-                onclick="InputFunctions.AddSkillInput(' (ex)')"
-              >
-                Expert
-              </button>
-              <div id="skills-input-section">
-                <ul id="skills-input-list" class="statblock-list"></ul>
-              </div>
-            </td>
+            <Proficiency />
             <td id="conditions-form">
               <label for="conditions-input">Condition Immunities:</label>
               <br />
