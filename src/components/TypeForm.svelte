@@ -22,7 +22,7 @@
           type="text"
           value={$statblock.otherType}
           name="otherType"
-          on:change={(e) => ($statblock.otherType = e.target.value)}
+          onchange={(e) => ($statblock.otherType = e.target.value)}
         />
       </div>
     </div>

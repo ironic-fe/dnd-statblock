@@ -24,7 +24,7 @@
           <span>(Custom HP:</span>
           <input
             type="checkbox"
-            on:change={(e) => ($statblock.customHP = e.target.checked)}
+            onchange={(e) => ($statblock.customHP = e.target.checked)}
           />
           <span>)</span>
         </label>
@@ -43,7 +43,7 @@
           <input
             type="checkbox"
             checked={$statblock.shieldBonus > 0}
-            on:change={(e) =>
+            onchange={(e) =>
               ($statblock.shieldBonus = e.target.checked ? 2 : 0)}
           />
           <span>)</span>

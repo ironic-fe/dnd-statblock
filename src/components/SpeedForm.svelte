@@ -48,7 +48,7 @@
           (Custom Speed: <input
             type="checkbox"
             checked={$statblock.customSpeed}
-            on:change={(e) => ($statblock.customSpeed = e.target.checked)}
+            onchange={(e) => ($statblock.customSpeed = e.target.checked)}
           />
           )
         </label>

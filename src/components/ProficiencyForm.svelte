@@ -4,7 +4,7 @@
 
   const statblock = getContext("statblock");
 
-  let selection;
+  let selection = $state();
 </script>
 
 <div>
