@@ -1,5 +1,4 @@
 <script>
-  import { getContext } from "svelte";
   import PresetForm from "./components/PresetForm.svelte";
   import Statblock from "./components/Statblock.svelte";
   import TypeForm from "./components/TypeForm.svelte";
@@ -7,8 +6,6 @@
   import SpeedForm from "./components/SpeedForm.svelte";
   import AbilitiesForm from "./components/AbilitiesForm.svelte";
   import ProficiencyForm from "./components/ProficiencyForm.svelte";
-
-  const statblock = getContext("statblock");
 </script>
 
 <div id="stat-block-body" style="min-width: 1000px;">
